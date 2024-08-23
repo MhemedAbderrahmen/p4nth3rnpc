@@ -4,7 +4,7 @@ Welcome to the P4nth3rNPC Quest Companion App! This app is designed to help you 
 
 ## How to Play
 
-WIP
+![image](https://github.com/user-attachments/assets/b047936e-8ba9-4b57-ae26-2058e9aed490)
 
 
 [Read the community wiki](https://p4nth3rworld-wiki.netlify.app/)
