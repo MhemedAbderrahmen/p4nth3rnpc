@@ -21,7 +21,7 @@ export function UserInitializer({ params }: { params: { username: string } }) {
     async onSuccess({ id }) {
       await generateUserQuest.mutateAsync({ userId: id });
       await generateUserQuestItems.mutateAsync({ userId: id });
-      router.push("/profile/" + params.username);
+      router.push("/journal/" + params.username);
     },
   });
 
@@ -35,7 +35,7 @@ export function UserInitializer({ params }: { params: { username: string } }) {
       <Card className="flex h-full w-full flex-col items-center justify-center text-center">
         <CardHeader className="flex w-full gap-4">
           <h1>User successfully initialized </h1>
-          <Link href={"/profile/" + createUser.data.username}>
+          <Link href={"/journal/" + createUser.data.username}>
             <Button className="font-semibold">
               View journal {createUser.data.username}
             </Button>
@@ -50,10 +50,15 @@ export function UserInitializer({ params }: { params: { username: string } }) {
         {createUser.error.data?.code === "CONFLICT" && (
           <div>
             User already initialized{" "}
-            <Link href={"/profile/" + params.username}>{params.username}</Link>
+            <Link href={"/journal/" + params.username}>{params.username}</Link>
           </div>
         )}
       </div>
     );
-  return <div />;
+  return (
+    <div>
+      Welcome In {params.username}, are you sure you want to start your
+      adventure and start questing
+    </div>
+  );
 }

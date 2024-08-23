@@ -52,7 +52,7 @@ export function InitialisationModal() {
     async onSuccess({ id }) {
       await generateUserQuest.mutateAsync({ userId: id });
       await generateUserQuestItems.mutateAsync({ userId: id });
-      router.push("/profile/" + form.getValues("username"));
+      router.push("/journal/" + form.getValues("username"));
     },
   });
 
@@ -96,7 +96,9 @@ export function InitialisationModal() {
                 )}
               />
               <Button type="submit" disabled={createUser.isPending}>
-                {createUser.isPending && <Loader2 className="mr-2" size={16} />}
+                {createUser.isPending && (
+                  <Loader2 className="mr-2 animate-spin" size={16} />
+                )}
                 Start your adventure!
               </Button>
             </form>

@@ -77,7 +77,7 @@ export const userQuestItemsRouter = createTRPCRouter({
           userQuestItems.push({
             filledIn: false,
             userQuestId: userQuest.id,
-            amount: 3,
+            amount: 1,
             name: requiredItem.name,
           });
         });
