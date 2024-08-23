@@ -1,8 +1,10 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { api } from "~/trpc/react";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -31,6 +33,8 @@ const formSchema = z.object({
 
 export function InitialisationModal() {
   const router = useRouter();
+  const utils = api.useUtils();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,12 +42,22 @@ export function InitialisationModal() {
     },
   });
 
-  // 2. Define a submit handler.
+  const generateUserQuestItems = api.userQuestItems.generate.useMutation();
+  const generateUserQuest = api.userQuests.generate.useMutation({
+    async onSuccess() {
+      await utils.user.get.invalidate();
+    },
+  });
+  const createUser = api.user.create.useMutation({
+    async onSuccess({ id }) {
+      await generateUserQuest.mutateAsync({ userId: id });
+      await generateUserQuestItems.mutateAsync({ userId: id });
+      router.push("/profile/" + form.getValues("username"));
+    },
+  });
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
-    router.push("/quests/" + values.username);
+    createUser.mutate({ username: values.username });
   }
 
   return (
@@ -81,7 +95,10 @@ export function InitialisationModal() {
                   </FormItem>
                 )}
               />
-              <Button type="submit">Start your adventure!</Button>
+              <Button type="submit" disabled={createUser.isPending}>
+                {createUser.isPending && <Loader2 className="mr-2" size={16} />}
+                Start your adventure!
+              </Button>
             </form>
           </Form>
         </div>

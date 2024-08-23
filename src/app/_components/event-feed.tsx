@@ -50,7 +50,7 @@ const EventFeed = () => {
     },
   });
 
-  const fillInQuest = api.questItem.fillInItem.useMutation();
+  const fillInQuest = api.userQuestItems.fillInItem.useMutation();
 
   const { lastMessage, readyState } = useWebSocket(
     "wss://p4nth3rb0t-mainframe.herokuapp.com/",
