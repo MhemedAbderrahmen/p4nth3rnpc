@@ -1,29 +1,29 @@
-# Create T3 App
+# P4nth3rNPC - Quest Companion App
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+Welcome to the P4nth3rNPC Quest Companion App! This app is designed to help you track your progress, manage your quests, and maximize your rewards in the P4nth3rworld game.
 
-## What's next? How do I make an app with this?
+## How to Play
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+### Step 1: Initialize Yourself
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- The first thing you need to do is initialize yourself in the game.
+- Navigate to the profile page by entering `/profile/[username]` in your browser.
+- Replace `[username]` with your actual P4nth3rworld username.
+- This will set up your profile and allow you to start tracking your quests and rewards.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+### Step 2: View Your Journal
 
-## Learn More
+- Once your profile is initialized, you will have access to your journal.
+- Your journal displays a list of daily quests that you can complete.
+- Future updates will include weekly quests and more exciting challenges!
+- Additionally, you can see the total coins you've collected so far.
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+### Step 3: Completing Quests
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+- To complete a quest, you need to collect specific quest items.
+- Once you have the required items, gift them to the `p4nth3rquestbot`.
+- Use the following command to gift items in the game chat:
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+  ```bash
+  !gift p4nth3rquestbot [quest item name]
+  ```
