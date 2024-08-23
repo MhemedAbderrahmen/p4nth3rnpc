@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { InitialisationModal } from "~/components/initialisation-modal";
+import { Button } from "~/components/ui/button";
 import {
   Card,
   CardContent,
@@ -28,6 +30,9 @@ export default async function Home() {
           <CardContent className="flex flex-col gap-4">
             To accept the quests you must join first!
             <InitialisationModal />
+            <Link href={"/how-to-play"}>
+              <Button variant={"link"}>How to play</Button>
+            </Link>
           </CardContent>
         </Card>
         <DailyQuests />
