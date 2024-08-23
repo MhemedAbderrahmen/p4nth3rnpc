@@ -76,6 +76,6 @@ Start the development server on `http://localhost:3000`:
 pnpm run dev
 ```
 
-## More about Nuxt
+## More about NextJS
 
 Look at the [Next 14 documentation](https://nextjs.org) to learn more.
