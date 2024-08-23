@@ -37,13 +37,14 @@ const validEvents = [
 ];
 
 const EventFeed = () => {
+  const utils = api.useUtils();
   const createNpcTransaction = api.npcTransaction.create.useMutation({
     async onSuccess({ giver, item }) {
       await fillInQuest.mutateAsync({
         username: giver,
         item,
       });
-
+      await utils.user.get.invalidate();
       toast.success(giver + " just filled in a quest with a " + item, {
         important: true,
       });
