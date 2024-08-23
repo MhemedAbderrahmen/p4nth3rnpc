@@ -12,23 +12,46 @@ datasource db {
 }
 
 model User {
-  id         String      @id @default(cuid())
-  username   String      @unique
-  gold       Int         @default(0)
+  id        String   @id @default(cuid())
+  username  String   @unique
+  gold      Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   userQuests UserQuest[]
+}
+
+model Item {
+  id   String @id @default(cuid())
+  name String
+
+  createdAt DateTime @default(now())
+  Quest     Quest?   @relation(fields: [questId], references: [id])
+  questId   String?
+}
+
+model UserQuestItem {
+  id       String  @id @default(cuid())
+  filledIn Boolean @default(false)
+  amount   Int
+
+  userQuestId String?
+  userQuest   UserQuest? @relation(fields: [userQuestId], references: [id])
+}
+
+model UserQuest {
+  id             String          @id @default(cuid())
+  userId         String
+  questId        String
+  progression    Int
+  active         Boolean?        @default(true)
+  userQuestItems UserQuestItem[]
+
+  user  User  @relation(fields: [userId], references: [id])
+  quest Quest @relation(fields: [questId], references: [id])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-}
-
-model QuestItem {
-  id        String   @id @default(cuid())
-  amount    Int
-  name      String
-  questId   String?
-  filledIn  Boolean  @default(false)
-  quest     Quest?   @relation(fields: [questId], references: [id])
-  createdAt DateTime @default(now())
 }
 
 model Quest {
@@ -36,19 +59,15 @@ model Quest {
   title         String
   description   String
   reward        Int
-  requiredItems QuestItem[]
+  requiredItems Item[]
   createdAt     DateTime    @default(now())
   userQuest     UserQuest[]
 }
 
-model UserQuest {
-  id          String   @id @default(cuid())
-  userId      String
-  questId     String
-  progression Int
-  active      Boolean? @default(true)
-  user        User     @relation(fields: [userId], references: [id])
-  quest       Quest    @relation(fields: [questId], references: [id])
+model NpcTransaction {
+  id    Int    @id @default(autoincrement())
+  item  String
+  giver String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -61,13 +80,4 @@ model Post {
   updatedAt DateTime @updatedAt
 
   @@index([name])
-}
-
-model NpcTransaction {
-  id    Int    @id @default(autoincrement())
-  item  String
-  giver String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
