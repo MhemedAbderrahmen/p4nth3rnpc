@@ -12,6 +12,7 @@ export const userQuestsRouter = createTRPCRouter({
         userId: input.userId,
         progression: 0,
         questId: availableQuest.id,
+        active: true,
       }));
 
       return await ctx.db.userQuest.createMany({
