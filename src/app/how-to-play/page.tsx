@@ -67,8 +67,8 @@ export default function HowToPlay() {
                     Step 4: Collect your reward{" "}
                   </h4>
                   <p>
-                    Completing quests will earn you gold points 🪙. You will use
-                    these gold points to purchase things from the{" "}
+                    Completing quests will earn you gems 💎. You will use these
+                    gold points to purchase things from the{" "}
                     <span className="text-emerald-500 underline">
                       p4nth3rquestbot
                     </span>

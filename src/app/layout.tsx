@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const TopNav = () => {
   return (
     <div className="flex justify-between">
-      <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight">❗</h1>
+      <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight">⭐</h1>
       <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight">
         <Link href={"/"}>p4nth3r.npc</Link>
       </h1>

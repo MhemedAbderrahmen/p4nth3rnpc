@@ -19,9 +19,8 @@ export default async function Home() {
         <Card className="w-full text-center">
           <CardHeader className="flex flex-col gap-4">
             <h1 className="text-center text-5xl font-bold">
-              🎒 📦 🌍 📍 🌳 🗺️
+              🏹 🔍 ⚔️ 📜 ⭐ 💎
             </h1>
-            <h2 className="text-2xl font-bold">p4nth3r.npc</h2>
             <CardDescription className="text-center">
               This is a companion app for p4nth3r.world, a place where you can
               find quests, and trade with me

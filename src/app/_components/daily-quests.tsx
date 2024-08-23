@@ -15,7 +15,7 @@ export function DailyQuests() {
     <>
       <Card className="w-full">
         <CardHeader>
-          <h2 className="text-2xl font-bold">Daily quests</h2>
+          <h2 className="flex items-center gap-2 text-2xl">🔍 Daily quests</h2>
           <CardDescription>
             These are the daily quests that will update every day at midnight
           </CardDescription>
@@ -24,7 +24,7 @@ export function DailyQuests() {
       {data?.map((quest, index) => (
         <Card className="w-full" key={index}>
           <CardHeader>
-            <h3 className="text-xl font-bold">❗{quest.title}</h3>
+            <h3 className="text-xl font-bold">⭐ {quest.title}</h3>
           </CardHeader>
           <CardContent>
             <div className="flex flex-col gap-4">
@@ -32,10 +32,7 @@ export function DailyQuests() {
                 <b>Details:</b> {quest.description}
               </p>
               <p className="flex w-full items-center gap-2">
-                <b>Quest reward:</b>{" "}
-                <span className="text-xl text-emerald-400">
-                  {quest.reward} 💰
-                </span>
+                <b>Quest reward:</b> <span>{quest.reward} 💎</span>
               </p>
             </div>
           </CardContent>

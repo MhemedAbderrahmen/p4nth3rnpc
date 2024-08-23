@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 "use client";
-import { Card, CardContent, CardHeader } from "~/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { api } from "~/trpc/react";
 
 export function UserDetails({ params }: { params: { username: string } }) {
@@ -21,21 +21,21 @@ export function UserDetails({ params }: { params: { username: string } }) {
   return (
     <>
       <div className="flex w-full flex-row justify-end text-xl">
-        💰 : {data?.gold}
+        {data?.gold}💎
       </div>
       <Card className="w-full">
         <CardHeader>
           <CardHeader className="text-center">
-            {params.username}&apos;s Journal 📰
+            <CardTitle>📓 {params.username}&apos;s Journal</CardTitle>
           </CardHeader>
         </CardHeader>
       </Card>
-      <div>Active Quests</div>
+      <div>Quests In Progress</div>
       {data?.userQuests.map((userQuest, index: number) =>
         userQuest.active ? (
           <Card className="w-full" key={index}>
             <CardHeader>
-              <h3 className="text-xl font-bold">❗ {userQuest.quest.title}</h3>
+              <h3 className="text-xl font-bold">🗺️ {userQuest.quest.title}</h3>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col gap-4">
@@ -43,10 +43,7 @@ export function UserDetails({ params }: { params: { username: string } }) {
                   <b>Details:</b> {userQuest.quest.description}
                 </p>
                 <p>
-                  <b>Quest reward:</b>{" "}
-                  <span className="text-emerald-400">
-                    {userQuest.quest.reward} 🪙
-                  </span>
+                  <b>Quest reward:</b> <span>{userQuest.quest.reward} 💎</span>
                 </p>
                 <div>
                   <b>Items to collect</b>
@@ -54,7 +51,6 @@ export function UserDetails({ params }: { params: { username: string } }) {
                     {userQuest.userQuestItems.map((item) => (
                       <li key={index}>
                         {item.name} x{item.amount}
-                        {item.filledIn ? " FILLED IN 💎" : null}
                       </li>
                     ))}
                   </ul>
@@ -64,35 +60,31 @@ export function UserDetails({ params }: { params: { username: string } }) {
           </Card>
         ) : null,
       )}
-      <div>Inactive Quests Active Quests</div>
-
+      <div>Completed Quests</div>
       {data?.userQuests.map((userQuest, index: number) =>
         !userQuest.active ? (
           <Card className="w-full" key={index}>
             <CardHeader>
-              <h3 className="text-xl font-bold">❗{userQuest.quest.title}</h3>
+              <h3 className="flex items-center gap-2 text-xl font-bold">
+                ⭐ {userQuest.quest.title}
+              </h3>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
                 <p>
                   <b>Details:</b> {userQuest.quest.description}
                 </p>
-                <p>
-                  <b>Quest reward:</b>{" "}
-                  <span className="text-emerald-400">
-                    {userQuest.quest.reward} 🪙
-                  </span>
-                </p>
                 <div>
-                  <b>Items to collect</b>
-                  <ul>
-                    {userQuest.userQuestItems.map((item) => (
-                      <li key={index}>
-                        {item.name} x{item.amount}
-                        {item.filledIn ? " FILLED IN 💎" : null}
-                      </li>
-                    ))}
-                  </ul>
+                  <b>Reward recieved:</b>{" "}
+                  <span>{userQuest.quest.reward} 💎</span>
+                </div>
+                <div>
+                  <b>Items:</b>
+                  {userQuest.userQuestItems.map((item) => (
+                    <div key={index}>
+                      {item.name} x{item.amount}
+                    </div>
+                  ))}
                 </div>
               </div>
             </CardContent>
