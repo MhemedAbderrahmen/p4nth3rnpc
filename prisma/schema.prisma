@@ -13,7 +13,7 @@ datasource db {
 
 model User {
   id         String      @id @default(cuid())
-  username   String      @unique()
+  username   String      @unique
   gold       Int         @default(0)
   userQuests UserQuest[]
 
@@ -26,6 +26,7 @@ model QuestItem {
   amount    Int
   name      String
   questId   String?
+  filledIn  Boolean  @default(false)
   quest     Quest?   @relation(fields: [questId], references: [id])
   createdAt DateTime @default(now())
 }
@@ -60,4 +61,13 @@ model Post {
   updatedAt DateTime @updatedAt
 
   @@index([name])
+}
+
+model NpcTransaction {
+  id    Int    @id @default(autoincrement())
+  item  String
+  giver String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

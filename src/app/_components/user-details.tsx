@@ -50,7 +50,8 @@ export function UserDetails({ params }: { params: { username: string } }) {
                 <ul>
                   {userQuest.quest.requiredItems.map((item) => (
                     <li key={index}>
-                      {item.name} x{item.amount}
+                      {item.name} x{item.amount}{" "}
+                      {item.filledIn ? "FILLED IN 💎" : null}
                     </li>
                   ))}
                 </ul>
