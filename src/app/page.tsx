@@ -28,7 +28,7 @@ export default async function Home() {
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
-            To accept the quests you must join first!
+            To get started on your adventure click the button below
             <InitialisationModal />
             <Link href={"/how-to-play"}>
               <Button variant={"link"}>How to play</Button>
