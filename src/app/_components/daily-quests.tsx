@@ -31,18 +31,12 @@ export function DailyQuests() {
               <p>
                 <b>Details:</b> {quest.description}
               </p>
-              <p>
+              <p className="flex w-full items-center gap-2">
                 <b>Quest reward:</b>{" "}
-                <span className="text-emerald-400">{quest.reward} 🪙</span>
+                <span className="text-xl text-emerald-400">
+                  {quest.reward} 💰
+                </span>
               </p>
-              <div>
-                <b>Items to collect</b>
-                <ul>
-                  {quest.requiredItems.map((item) => (
-                    <li key={index}>{item.name}</li>
-                  ))}
-                </ul>
-              </div>
             </div>
           </CardContent>
         </Card>
