@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 "use client";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { api } from "~/trpc/react";
@@ -28,38 +30,75 @@ export function UserDetails({ params }: { params: { username: string } }) {
           </CardHeader>
         </CardHeader>
       </Card>
-      Active Quests{" "}
-      {data?.userQuests.map((userQuest, index) => (
-        <Card className="w-full" key={index}>
-          <CardHeader>
-            <h3 className="text-xl font-bold">❗{userQuest.quest.title}</h3>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-col gap-4">
-              <p>
-                <b>Details:</b> {userQuest.quest.description}
-              </p>
-              <p>
-                <b>Quest reward:</b>{" "}
-                <span className="text-emerald-400">
-                  {userQuest.quest.reward} 🪙
-                </span>
-              </p>
-              <div>
-                <b>Items to collect</b>
-                <ul>
-                  {userQuest.userQuestItems.map((item) => (
-                    <li key={index}>
-                      {item.name} x{item.amount}
-                      {item.filledIn ? "FILLED IN 💎" : null}
-                    </li>
-                  ))}
-                </ul>
+      <div>Active Quests</div>
+      {data?.userQuests.map((userQuest, index: number) =>
+        userQuest.active ? (
+          <Card className="w-full" key={index}>
+            <CardHeader>
+              <h3 className="text-xl font-bold">❗{userQuest.quest.title}</h3>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col gap-4">
+                <p>
+                  <b>Details:</b> {userQuest.quest.description}
+                </p>
+                <p>
+                  <b>Quest reward:</b>{" "}
+                  <span className="text-emerald-400">
+                    {userQuest.quest.reward} 🪙
+                  </span>
+                </p>
+                <div>
+                  <b>Items to collect</b>
+                  <ul>
+                    {userQuest.userQuestItems.map((item) => (
+                      <li key={index}>
+                        {item.name} x{item.amount}
+                        {item.filledIn ? " FILLED IN 💎" : null}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
-      ))}
+            </CardContent>
+          </Card>
+        ) : null,
+      )}
+      <div>Inactive Quests Active Quests</div>
+
+      {data?.userQuests.map((userQuest, index: number) =>
+        !userQuest.active ? (
+          <Card className="w-full" key={index}>
+            <CardHeader>
+              <h3 className="text-xl font-bold">❗{userQuest.quest.title}</h3>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col gap-4">
+                <p>
+                  <b>Details:</b> {userQuest.quest.description}
+                </p>
+                <p>
+                  <b>Quest reward:</b>{" "}
+                  <span className="text-emerald-400">
+                    {userQuest.quest.reward} 🪙
+                  </span>
+                </p>
+                <div>
+                  <b>Items to collect</b>
+                  <ul>
+                    {userQuest.userQuestItems.map((item) => (
+                      <li key={index}>
+                        {item.name} x{item.amount}
+                        {item.filledIn ? " FILLED IN 💎" : null}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ) : null,
+      )}
     </>
   );
 }
