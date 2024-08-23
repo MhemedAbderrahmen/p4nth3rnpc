@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect } from "react";
+import { Card, CardHeader } from "~/components/ui/card";
 import { api } from "~/trpc/react";
 
 export function UserInitializer({ params }: { params: { username: string } }) {
@@ -26,12 +27,17 @@ export function UserInitializer({ params }: { params: { username: string } }) {
   if (createUser.isPending) return <div>Loading...</div>;
   if (createUser.isSuccess)
     return (
-      <div>
-        User successfully initialized{" "}
-        <Link href={"/profile/" + createUser.data.username}>
-          {createUser.data.username}
-        </Link>
-      </div>
+      <Card className="flex w-full flex-col">
+        <CardHeader className="w-full">
+          User successfully initialized{" "}
+          <Link
+            href={"/profile/" + createUser.data.username}
+            className="underline"
+          >
+            Go To Journal{createUser.data.username}
+          </Link>
+        </CardHeader>
+      </Card>
     );
   if (createUser.isError)
     return (
