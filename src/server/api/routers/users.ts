@@ -33,6 +33,7 @@ export const userRouter = createTRPCRouter({
       include: {
         userQuests: {
           include: {
+            userQuestItems: true,
             quest: {
               include: {
                 requiredItems: true,

@@ -3,6 +3,7 @@ import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 import { npcTransactionRouter } from "./routers/npc-transaction";
 import { questItemRouter } from "./routers/quest-item";
 import { questsRouter } from "./routers/quests";
+import { userQuestItemsRouter } from "./routers/user-quest-items";
 import { userQuestsRouter } from "./routers/user-quests";
 import { userRouter } from "./routers/users";
 
@@ -16,6 +17,7 @@ export const appRouter = createTRPCRouter({
   user: userRouter,
   quests: questsRouter,
   userQuests: userQuestsRouter,
+  userQuestItems: userQuestItemsRouter,
   npcTransaction: npcTransactionRouter,
   questItem: questItemRouter,
 });

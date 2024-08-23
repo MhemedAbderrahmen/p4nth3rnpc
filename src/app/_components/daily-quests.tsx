@@ -39,9 +39,7 @@ export function DailyQuests() {
                 <b>Items to collect</b>
                 <ul>
                   {quest.requiredItems.map((item) => (
-                    <li key={index}>
-                      {item.name} x{item.amount}
-                    </li>
+                    <li key={index}>{item.name}</li>
                   ))}
                 </ul>
               </div>

@@ -32,8 +32,9 @@ model Item {
 
 model UserQuestItem {
   id       String  @id @default(cuid())
-  filledIn Boolean @default(false)
+  name     String
   amount   Int
+  filledIn Boolean @default(false)
 
   userQuestId String?
   userQuest   UserQuest? @relation(fields: [userQuestId], references: [id])

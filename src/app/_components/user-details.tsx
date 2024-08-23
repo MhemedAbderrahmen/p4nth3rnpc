@@ -48,9 +48,9 @@ export function UserDetails({ params }: { params: { username: string } }) {
               <div>
                 <b>Items to collect</b>
                 <ul>
-                  {userQuest.quest.requiredItems.map((item) => (
+                  {userQuest.userQuestItems.map((item) => (
                     <li key={index}>
-                      {item.name} x{item.amount}{" "}
+                      {item.name} x{item.amount}
                       {item.filledIn ? "FILLED IN 💎" : null}
                     </li>
                   ))}

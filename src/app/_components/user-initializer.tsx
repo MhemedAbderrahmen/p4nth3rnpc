@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Button } from "~/components/ui/button";
 import { Card, CardHeader } from "~/components/ui/card";
@@ -7,8 +8,10 @@ import { api } from "~/trpc/react";
 
 export function UserInitializer({ params }: { params: { username: string } }) {
   const utils = api.useUtils();
+  const router = useRouter();
+  const generateUserQuestItems = api.userQuestItems.generate.useMutation();
 
-  const generateQuest = api.userQuests.generate.useMutation({
+  const generateUserQuest = api.userQuests.generate.useMutation({
     async onSuccess() {
       await utils.user.get.invalidate();
     },
@@ -16,14 +19,15 @@ export function UserInitializer({ params }: { params: { username: string } }) {
 
   const createUser = api.user.create.useMutation({
     async onSuccess({ id }) {
-      await generateQuest.mutateAsync({ userId: id });
-      await utils.user.get.invalidate();
+      await generateUserQuest.mutateAsync({ userId: id });
+      await generateUserQuestItems.mutateAsync({ userId: id });
+      router.push("/profile/" + params.username);
     },
   });
 
   useEffect(() => {
     createUser.mutate({ username: params.username });
-  }, []);
+  }, [params.username]);
 
   if (createUser.isPending) return <div>Loading...</div>;
   if (createUser.isSuccess)
@@ -42,7 +46,7 @@ export function UserInitializer({ params }: { params: { username: string } }) {
   if (createUser.isError)
     return (
       <div>
-        Error Initialising user{" "}
+        Error Initialising user {JSON.stringify(createUser.error.data)}
         {createUser.error.data?.code === "CONFLICT" && (
           <div>
             User already initialized{" "}

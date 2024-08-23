@@ -20,15 +20,12 @@ export const questsRouter = createTRPCRouter({
               data: [
                 {
                   name: "Golden Mushroom",
-                  amount: 2,
                 },
                 {
                   name: "Mystic Herb",
-                  amount: 1,
                 },
                 {
                   name: "Enchanted Berry",
-                  amount: 3,
                 },
               ],
             },
