@@ -60,10 +60,35 @@
 }
 
 @layer base {
+  @font-face {
+    font-family: "Lacquer";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../../public/fonts/Lacquer-Regular.woff2) format("woff2");
+  }
+
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
   }
+}
+
+html {
+  @apply font-mono;
+}
+
+h1,
+h2 {
+  @apply font-display;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  @apply font-mono;
+  @apply font-bold;
 }

@@ -5,8 +5,8 @@ import { Inter as FontSans } from "next/font/google";
 
 import { ModeToggle } from "~/components/mode-toggle";
 import { ThemeProvider } from "~/components/theme-provider";
-import { cn } from "~/lib/utils";
 import { TRPCReactProvider } from "~/trpc/react";
+import Footer from "./_components/footer";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -16,7 +16,7 @@ const fontSans = FontSans({
 export const metadata: Metadata = {
   title: "P4nth3r NPC | Quests",
   description: "P4nth3r Quests Comapanion App",
-  icons: [{ rel: "icon", url: "🌍" }],
+  icons: [{ rel: "icon", url: "./favicon.ico" }],
 };
 
 const TopNav = () => {
@@ -30,14 +30,6 @@ const TopNav = () => {
   );
 };
 
-const Footer = () => {
-  return (
-    <div className="w absolute bottom-0">
-      <div>Status: Connected</div>
-    </div>
-  );
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -45,12 +37,11 @@ export default function RootLayout({
     <html
       suppressHydrationWarning
       lang="en"
-      className={cn(
-        "bg-background flex min-h-screen w-full items-center justify-center p-4 font-sans antialiased",
-        fontSans.variable,
-      )}
+      className={
+        "flex min-h-screen w-full items-center justify-center bg-background p-4 font-sans antialiased"
+      }
     >
-      <body className="h-full w-full max-w-screen-md">
+      <body className="flex h-full w-full max-w-screen-md flex-col gap-4">
         <TRPCReactProvider>
           <ThemeProvider
             attribute="class"
