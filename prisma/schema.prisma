@@ -12,39 +12,45 @@ datasource db {
 }
 
 model User {
-  id        String      @id @default(cuid())
-  username  String      @unique()
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
-  UserQuest UserQuest[]
+  id       String @id @default(cuid())
+  username String @unique()
+
+  userQuests UserQuest[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model QuestItem {
   id        String   @id @default(cuid())
   amount    Int
   name      String
-  createdAt DateTime @default(now())
-  Quest     Quest?   @relation(fields: [questId], references: [id])
   questId   String?
+  quest     Quest?   @relation(fields: [questId], references: [id])
+  createdAt DateTime @default(now())
 }
 
 model Quest {
   id            String      @id @default(cuid())
   title         String
   description   String
+  reward        Int
   requiredItems QuestItem[]
-  reward        Int // Could be a reference to an Item or a special reward
-  users         UserQuest[]
+  createdAt     DateTime    @default(now())
+  userQuest     UserQuest[]
 }
 
 model UserQuest {
-  id       String @id @default(cuid())
-  userId   String
-  user     User   @relation(fields: [userId], references: [id])
-  questId  String
-  quest    Quest  @relation(fields: [questId], references: [id])
-  progress Int    @default(0) // Tracks progress, like collected items
-  status   String // "in-progress", "completed"
+  id          String @id @default(cuid())
+  userId      String
+  questId     String
+  progression Int
+
+  user  User  @relation(fields: [userId], references: [id])
+  quest Quest @relation(fields: [questId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Post {

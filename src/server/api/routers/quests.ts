@@ -4,8 +4,8 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 export const questsRouter = createTRPCRouter({
   generate: publicProcedure
     .input(z.object({ userId: z.string().min(1) }))
-    .mutation(async ({ ctx, input }) => {
-      const questsCreated = await ctx.db.quest.create({
+    .mutation(async ({ ctx }) => {
+      return await ctx.db.quest.create({
         data: {
           title: "The Great Recipe Hunt",
           description:
@@ -29,14 +29,6 @@ export const questsRouter = createTRPCRouter({
               ],
             },
           },
-        },
-      });
-
-      return await ctx.db.userQuest.create({
-        data: {
-          questId: questsCreated.id,
-          userId: input.userId,
-          status: "active",
         },
       });
     }),

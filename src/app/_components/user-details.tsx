@@ -1,26 +1,22 @@
 "use client";
-import { useEffect } from "react";
 import { api } from "~/trpc/react";
 
 export function UserDetails({ params }: { params: { username: string } }) {
-  const utils = api.useUtils();
-  const createUser = api.user.create.useMutation({
-    async onSuccess() {
-      await utils.user.get.invalidate();
-    },
-  });
-  const generateQuest = api.quests.generate.useMutation({
-    async onSuccess({ id }) {
-      await utils.user.get.invalidate();
-      await generateQuest.mutateAsync({ userId: id });
-    },
-  });
+  const { data, isPending } = api.user.get.useQuery(params.username);
 
-  useEffect(() => {
-    createUser.mutate({ username: params.username });
-  }, []);
+  if (isPending) return <div>Loading...</div>;
 
   return (
-    <div>{createUser.isPending ? "Loading..." : createUser.data?.username}</div>
+    <div>
+      User quests{" "}
+      {data?.userQuests.map((userQuest, index) => (
+        <div key={index}>
+          <div>{userQuest.quest.title}</div>
+          <div>{userQuest.quest.description}</div>
+          <div>{userQuest.quest.reward}</div>
+          <div>{userQuest.progression}</div>
+        </div>
+      ))}
+    </div>
   );
 }

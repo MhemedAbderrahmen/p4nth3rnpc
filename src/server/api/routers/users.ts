@@ -1,3 +1,4 @@
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
@@ -9,10 +10,17 @@ export const userRouter = createTRPCRouter({
       const existingUser = await ctx.db.user.findUnique({
         where: { username: input.username },
       });
-      if (existingUser) return existingUser;
+      if (existingUser) throw new TRPCError({ code: "CONFLICT" });
       return await ctx.db.user.create({
         data: {
           username: input.username,
+        },
+        include: {
+          userQuests: {
+            include: {
+              quest: true,
+            },
+          },
         },
       });
     }),
@@ -21,6 +29,13 @@ export const userRouter = createTRPCRouter({
     const user = await ctx.db.user.findUnique({
       where: {
         username: input,
+      },
+      include: {
+        userQuests: {
+          include: {
+            quest: true,
+          },
+        },
       },
     });
     if (!user) throw new Error("User not found");
