@@ -14,10 +14,6 @@ export default async function Home() {
               🎒 📦 🌍 📍 🌳 🗺️
             </h1>
             <h2 className="text-2xl font-bold">p4nth3r.npc</h2>
-          </CardHeader>
-        </Card>
-        <Card className="w-full">
-          <CardHeader>
             <CardDescription className="text-center">
               This is a companion app for p4nth3r.world, a place where you can
               find quests, and trade with me
