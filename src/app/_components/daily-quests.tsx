@@ -24,7 +24,9 @@ export function DailyQuests() {
       {data?.map((quest, index) => (
         <Card className="w-full" key={index}>
           <CardHeader>
-            <h3 className="text-xl font-bold">⭐ {quest.title}</h3>
+            <h3 className="flex items-center gap-2 text-xl font-bold">
+              <div className="animate-bounce">⭐</div> {quest.title}
+            </h3>
           </CardHeader>
           <CardContent>
             <div className="flex flex-col gap-4">

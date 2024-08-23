@@ -56,10 +56,13 @@ export default function HowToPlay() {
                     Step 3: Complete the Quest
                   </h4>
                   <p>
-                    Once you&apos;ve gathered all the items, gift them to{" "}
+                    Once you are done collecting the items you have to go to the{" "}
                     <span className="text-emerald-500 underline">
                       p4nth3rquestbot
-                    </span>
+                    </span>{" "}
+                    and gift him the items he needs for the quest, you can
+                    always find him on the side of the{" "}
+                    <span className="bold text-emerald-500">mountains</span>
                   </p>
                 </div>
                 <div>
@@ -67,11 +70,12 @@ export default function HowToPlay() {
                     Step 4: Collect your reward{" "}
                   </h4>
                   <p>
-                    Completing quests will earn you gems 🏆. You will use these
-                    gold points to purchase things from the{" "}
+                    Completing quests will earn you trophies 🏆. You will use
+                    these points to purchase things from the{" "}
                     <span className="text-emerald-500 underline">
                       p4nth3rquestbot
-                    </span>
+                    </span>{" "}
+                    market later on.
                   </p>
                 </div>
               </div>
