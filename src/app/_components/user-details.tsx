@@ -35,7 +35,7 @@ export function UserDetails({ params }: { params: { username: string } }) {
         userQuest.active ? (
           <Card className="w-full" key={index}>
             <CardHeader>
-              <h3 className="text-xl font-bold">🗺️ {userQuest.quest.title}</h3>
+              <h3 className="text-xl font-bold">⭐ {userQuest.quest.title}</h3>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col gap-4">
