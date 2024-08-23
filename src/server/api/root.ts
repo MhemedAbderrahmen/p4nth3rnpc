@@ -1,5 +1,6 @@
 import { postRouter } from "~/server/api/routers/post";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
+import { itemsRouter } from "./routers/items";
 import { npcTransactionRouter } from "./routers/npc-transaction";
 import { questItemRouter } from "./routers/quest-item";
 import { questsRouter } from "./routers/quests";
@@ -20,6 +21,7 @@ export const appRouter = createTRPCRouter({
   userQuestItems: userQuestItemsRouter,
   npcTransaction: npcTransactionRouter,
   questItem: questItemRouter,
+  items: itemsRouter,
 });
 
 // export type definition of API

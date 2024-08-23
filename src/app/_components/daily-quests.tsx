@@ -32,7 +32,7 @@ export function DailyQuests() {
                 <b>Details:</b> {quest.description}
               </p>
               <p className="flex w-full items-center gap-2">
-                <b>Quest reward:</b> <span>{quest.reward} 💎</span>
+                <b>Quest reward:</b> <span>{quest.reward} 🏆</span>
               </p>
             </div>
           </CardContent>

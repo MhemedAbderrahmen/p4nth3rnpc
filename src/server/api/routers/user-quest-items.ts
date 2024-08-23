@@ -67,6 +67,27 @@ export const userQuestItemsRouter = createTRPCRouter({
       });
     }),
 
+  create: publicProcedure
+    .input(
+      z.object({
+        userId: z.string().min(1),
+        userQuestId: z.string(),
+        items: z.array(z.string()),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const userQuestItems = input.items.map((item: string) => ({
+        filledIn: false,
+        userQuestId: input.userQuestId,
+        amount: 1,
+        name: item,
+      }));
+
+      return await ctx.db.userQuestItem.createMany({
+        data: userQuestItems,
+      });
+    }),
+
   generate: publicProcedure
     .input(z.object({ userId: z.string().min(1) }))
     .mutation(async ({ ctx, input }) => {

@@ -21,12 +21,12 @@ export function UserDetails({ params }: { params: { username: string } }) {
   return (
     <>
       <div className="flex w-full flex-row justify-end text-xl">
-        {data?.gold}💎
+        {data?.gold}🏆
       </div>
       <Card className="w-full">
         <CardHeader>
           <CardHeader className="text-center">
-            <CardTitle>📓 {params.username}&apos;s Journal</CardTitle>
+            <CardTitle>📜 {params.username}&apos;s Journal</CardTitle>
           </CardHeader>
         </CardHeader>
       </Card>
@@ -43,7 +43,7 @@ export function UserDetails({ params }: { params: { username: string } }) {
                   <b>Details:</b> {userQuest.quest.description}
                 </p>
                 <p>
-                  <b>Quest reward:</b> <span>{userQuest.quest.reward} 💎</span>
+                  <b>Quest reward:</b> <span>{userQuest.quest.reward} 🏆</span>
                 </p>
                 <div>
                   <b>Items to collect</b>
@@ -76,7 +76,7 @@ export function UserDetails({ params }: { params: { username: string } }) {
                 </p>
                 <div>
                   <b>Reward recieved:</b>{" "}
-                  <span>{userQuest.quest.reward} 💎</span>
+                  <span>{userQuest.quest.reward} 🏆</span>
                 </div>
                 <div>
                   <b>Items:</b>

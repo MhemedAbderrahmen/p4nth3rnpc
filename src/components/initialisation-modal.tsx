@@ -66,7 +66,7 @@ export function InitialisationModal() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Start Questing</Button>
+        <Button className="text-lg font-bold">Start Questing</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
