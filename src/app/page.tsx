@@ -1,4 +1,10 @@
-import { Card, CardDescription, CardHeader } from "~/components/ui/card";
+import { InitialisationModal } from "~/components/initialisation-modal";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+} from "~/components/ui/card";
 import { api, HydrateClient } from "~/trpc/server";
 import { DailyQuests } from "./_components/daily-quests";
 
@@ -19,6 +25,10 @@ export default async function Home() {
               find quests, and trade with me
             </CardDescription>
           </CardHeader>
+          <CardContent className="flex flex-col gap-4">
+            To accept the quests you must join first!
+            <InitialisationModal />
+          </CardContent>
         </Card>
         <DailyQuests />
       </main>

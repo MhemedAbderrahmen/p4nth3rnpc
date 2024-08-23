@@ -1,22 +1,64 @@
 "use client";
+import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { api } from "~/trpc/react";
 
 export function UserDetails({ params }: { params: { username: string } }) {
-  const { data, isPending } = api.user.get.useQuery(params.username);
+  const { data, isPending, isError } = api.user.get.useQuery(params.username);
 
   if (isPending) return <div>Loading...</div>;
-
+  if (isError)
+    return (
+      <Card className="w-full">
+        <CardHeader>
+          <CardHeader className="text-center text-2xl">
+            <h1>Uh no an error occured 😭 maybe this player does not exist?</h1>
+          </CardHeader>
+        </CardHeader>
+      </Card>
+    );
   return (
-    <div>
-      User quests{" "}
+    <>
+      <div className="flex w-full flex-row justify-end text-xl">
+        🪙 : {data?.gold}
+      </div>
+      <Card className="w-full">
+        <CardHeader>
+          <CardHeader className="text-center">
+            {params.username}&apos;s Journal 📰
+          </CardHeader>
+        </CardHeader>
+      </Card>
+      Active Quests{" "}
       {data?.userQuests.map((userQuest, index) => (
-        <div key={index}>
-          <div>{userQuest.quest.title}</div>
-          <div>{userQuest.quest.description}</div>
-          <div>{userQuest.quest.reward}</div>
-          <div>{userQuest.progression}</div>
-        </div>
+        <Card className="w-full" key={index}>
+          <CardHeader>
+            <h3 className="text-xl font-bold">❗{userQuest.quest.title}</h3>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col gap-4">
+              <p>
+                <b>Details:</b> {userQuest.quest.description}
+              </p>
+              <p>
+                <b>Quest reward:</b>{" "}
+                <span className="text-emerald-400">
+                  {userQuest.quest.reward} 🪙
+                </span>
+              </p>
+              <div>
+                <b>Items to collect</b>
+                <ul>
+                  {userQuest.quest.requiredItems.map((item) => (
+                    <li key={index}>
+                      {item.name} x{item.amount}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       ))}
-    </div>
+    </>
   );
 }

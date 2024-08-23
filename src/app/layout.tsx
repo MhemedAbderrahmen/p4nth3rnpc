@@ -1,18 +1,13 @@
 import "~/styles/globals.css";
 
 import { type Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
 
 import Link from "next/link";
 import { ModeToggle } from "~/components/mode-toggle";
 import { ThemeProvider } from "~/components/theme-provider";
+import { Toaster } from "~/components/ui/sonner";
 import { TRPCReactProvider } from "~/trpc/react";
-import Footer from "./_components/footer";
-
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+import EventFeed from "./_components/event-feed";
 
 export const metadata: Metadata = {
   title: "P4nth3r NPC | Quests",
@@ -53,7 +48,8 @@ export default function RootLayout({
           >
             <TopNav />
             {children}
-            <Footer />
+            <EventFeed />
+            <Toaster />
           </ThemeProvider>
         </TRPCReactProvider>
       </body>

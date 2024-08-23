@@ -33,12 +33,16 @@ export const userRouter = createTRPCRouter({
       include: {
         userQuests: {
           include: {
-            quest: true,
+            quest: {
+              include: {
+                requiredItems: true,
+              },
+            },
           },
         },
       },
     });
-    if (!user) throw new Error("User not found");
+    if (!user) throw new TRPCError({ code: "NOT_FOUND" });
     return user;
   }),
 });

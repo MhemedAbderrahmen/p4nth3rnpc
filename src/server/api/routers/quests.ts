@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import dayjs from "dayjs";
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
@@ -33,8 +37,19 @@ export const questsRouter = createTRPCRouter({
       });
     }),
 
-  get: publicProcedure.query(async ({ ctx }) => {
+  daily: publicProcedure.query(async ({ ctx }) => {
+    const now = new Date();
+
+    const todayStart: Date = dayjs(now).startOf("day").toDate();
+    const todayEnd = dayjs(now).endOf("day").toDate();
+
     return await ctx.db.quest.findMany({
+      where: {
+        createdAt: {
+          gte: todayStart,
+          lte: todayEnd,
+        },
+      },
       orderBy: {
         createdAt: "asc",
       },

@@ -9,7 +9,7 @@ import {
 import { api } from "~/trpc/react";
 
 export function DailyQuests() {
-  const { data, isPending } = api.quests.get.useQuery();
+  const { data, isPending } = api.quests.daily.useQuery();
   if (isPending) return <div>Loading...</div>;
   return (
     <>
@@ -24,17 +24,16 @@ export function DailyQuests() {
       {data?.map((quest, index) => (
         <Card className="w-full" key={index}>
           <CardHeader>
-            <h3 className="text-xl font-bold">{quest.title}</h3>
+            <h3 className="text-xl font-bold">❗{quest.title}</h3>
           </CardHeader>
           <CardContent>
             <div className="flex flex-col gap-4">
               <p>
-                <b>Details:</b>
-                {quest.description}
+                <b>Details:</b> {quest.description}
               </p>
               <p>
                 <b>Quest reward:</b>{" "}
-                <span className="text-emerald-400">{quest.reward} 💎</span>
+                <span className="text-emerald-400">{quest.reward} 🪙</span>
               </p>
               <div>
                 <b>Items to collect</b>
