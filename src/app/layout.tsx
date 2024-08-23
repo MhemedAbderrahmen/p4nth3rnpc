@@ -3,6 +3,7 @@ import "~/styles/globals.css";
 import { type Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 
+import Link from "next/link";
 import { ModeToggle } from "~/components/mode-toggle";
 import { ThemeProvider } from "~/components/theme-provider";
 import { TRPCReactProvider } from "~/trpc/react";
@@ -22,9 +23,9 @@ export const metadata: Metadata = {
 const TopNav = () => {
   return (
     <div className="flex justify-between">
-      <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
-        P4nth3r.NPC
-      </h3>
+      <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight">
+        <Link href={"/"}>p4nth3r.npc</Link>
+      </h1>
       <ModeToggle />
     </div>
   );
@@ -38,7 +39,7 @@ export default function RootLayout({
       suppressHydrationWarning
       lang="en"
       className={
-        "flex min-h-screen w-full items-center justify-center bg-background p-4 font-sans antialiased"
+        "font-sans flex min-h-screen w-full items-center justify-center bg-background p-4 antialiased"
       }
     >
       <body className="flex h-full w-full max-w-screen-md flex-col gap-4">

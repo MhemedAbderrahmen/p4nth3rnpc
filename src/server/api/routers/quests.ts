@@ -32,4 +32,15 @@ export const questsRouter = createTRPCRouter({
         },
       });
     }),
+
+  get: publicProcedure.query(async ({ ctx }) => {
+    return await ctx.db.quest.findMany({
+      orderBy: {
+        createdAt: "asc",
+      },
+      include: {
+        requiredItems: true,
+      },
+    });
+  }),
 });

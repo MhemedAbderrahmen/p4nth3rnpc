@@ -4,15 +4,15 @@ import { useEffect, useState } from "react";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 
 const Footer = () => {
-  const [socketUrl, setSocketUrl] = useState(
+  const { lastMessage, readyState } = useWebSocket(
     "wss://p4nth3rb0t-mainframe.herokuapp.com/",
+    {
+      shouldReconnect: () => true,
+      reconnectInterval: 0,
+    },
   );
 
-  const { lastMessage, readyState } = useWebSocket(socketUrl, {
-    shouldReconnect: () => true,
-  });
   const [messageHistory, setMessageHistory] = useState<MessageEvent<any>[]>([]);
-  //Public API that will echo messages sent to it back to the client
 
   useEffect(() => {
     if (lastMessage !== null) {
