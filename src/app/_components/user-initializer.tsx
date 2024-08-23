@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect } from "react";
+import { Button } from "~/components/ui/button";
 import { Card, CardHeader } from "~/components/ui/card";
 import { api } from "~/trpc/react";
 
@@ -27,14 +28,13 @@ export function UserInitializer({ params }: { params: { username: string } }) {
   if (createUser.isPending) return <div>Loading...</div>;
   if (createUser.isSuccess)
     return (
-      <Card className="flex w-full flex-col">
-        <CardHeader className="w-full">
-          User successfully initialized{" "}
-          <Link
-            href={"/profile/" + createUser.data.username}
-            className="underline"
-          >
-            Go To Journal{createUser.data.username}
+      <Card className="flex h-full w-full flex-col items-center justify-center text-center">
+        <CardHeader className="flex w-full gap-4">
+          <h1>User successfully initialized </h1>
+          <Link href={"/profile/" + createUser.data.username}>
+            <Button className="font-semibold">
+              View journal {createUser.data.username}
+            </Button>
           </Link>
         </CardHeader>
       </Card>
