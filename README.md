@@ -28,10 +28,7 @@ Welcome to the P4nth3rNPC Quest Companion App! This app is designed to help you 
   !gift p4nth3rquestbot [quest item name]
   ```
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/716a95d1-9f46-4ade-a547-c55d11b3bcb4/deploy-status)](https://app.netlify.com/sites/pantherworld/deploys)
-
 [Read the community wiki](https://p4nth3rworld-wiki.netlify.app/)
-
 
 ## About this repository
 
