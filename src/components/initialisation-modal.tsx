@@ -9,7 +9,6 @@ import { Button } from "./ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -54,6 +53,10 @@ export function InitialisationModal() {
       await generateUserQuestItems.mutateAsync({ userId: id });
       router.push("/journal/" + form.getValues("username"));
     },
+    onError({ data }) {
+      if (data?.code === "CONFLICT")
+        router.push("/journal/" + form.getValues("username"));
+    },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -68,10 +71,6 @@ export function InitialisationModal() {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Start questing now!</DialogTitle>
-          <DialogDescription>
-            You are about to start your quests and begin your adventure, what
-            should I call you?
-          </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <Form {...form}>
@@ -84,12 +83,12 @@ export function InitialisationModal() {
                 name="username"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Username</FormLabel>
+                    <FormLabel>p4nth3r.world username</FormLabel>
                     <FormControl>
                       <Input placeholder="leboomslang" {...field} />
                     </FormControl>
                     <FormDescription>
-                      This is needs to be your twitch username!
+                      This is needs to be your p4nth3r.world username!
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
