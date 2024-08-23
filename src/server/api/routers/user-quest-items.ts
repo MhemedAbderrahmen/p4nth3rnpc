@@ -35,12 +35,31 @@ export const userQuestItemsRouter = createTRPCRouter({
       user.userQuests.map((userQuest) => {
         userQuest.userQuestItems.map(async (userQuestItem) => {
           if (userQuestItem.name === input.item) {
+            // TODO: Do this process only if amount of items === filledInAmount
             await ctx.db.userQuestItem.update({
               where: {
                 id: userQuestItem.id,
               },
               data: {
                 filledIn: true,
+              },
+            });
+            await ctx.db.userQuest.update({
+              where: {
+                id: userQuest.id,
+              },
+              data: {
+                active: false,
+              },
+            });
+            await ctx.db.user.update({
+              where: {
+                id: user.id,
+              },
+              data: {
+                gold: {
+                  increment: userQuest.quest.reward,
+                },
               },
             });
           }
