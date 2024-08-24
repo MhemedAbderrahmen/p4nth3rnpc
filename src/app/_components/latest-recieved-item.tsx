@@ -1,14 +1,29 @@
 "use client";
 
+import dayjs from "dayjs";
 import { Button } from "~/components/ui/button";
 import { api } from "~/trpc/react";
 
-const TransactionCard = ({ item, giver }: { item: string; giver: string }) => {
+const TransactionCard = ({
+  item,
+  giver,
+  createdAt,
+}: {
+  item: string;
+  giver: string;
+  createdAt: Date;
+}) => {
   return (
-    <div className="flex w-full flex-row items-center gap-2">
-      🎒 <span className="text-primary">p4nth3rquestbot</span> has recieved{" "}
-      <span className="text-primary">{item}</span>
-      x1 from <span className="text-primary">{giver}</span>
+    <div className="flex w-full flex-row items-center justify-between gap-2">
+      <div>
+        <div>
+          Recieved <span className="text-primary">{item}x1</span>
+        </div>
+        <div>
+          from <span className="text-primary">{giver}</span>
+        </div>
+      </div>
+      <div>{dayjs(createdAt).format("MMMM D, YYYY h:mm A")}</div>
     </div>
   );
 };
@@ -18,11 +33,16 @@ export default function LatestRecievedItem() {
   return (
     <div className="flex w-full flex-col gap-2 rounded-md border bg-card p-2">
       <div className="flex w-full items-center justify-between">
-        <div>Recent NPC Transactions:</div>
-        <Button variant={"link"}>p4nth3r.npc&apos;s Inventory 📦</Button>
+        <div>Recent transactions:</div>
+        <Button variant={"link"}>npc&apos;s Inventory 📦</Button>
       </div>
-      {data?.map(({ item, giver }, index) => (
-        <TransactionCard item={item} giver={giver} key={index} />
+      {data?.map(({ item, giver, createdAt }, index) => (
+        <TransactionCard
+          item={item}
+          giver={giver}
+          createdAt={createdAt}
+          key={index}
+        />
       ))}
     </div>
   );
