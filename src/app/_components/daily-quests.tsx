@@ -6,11 +6,12 @@ import {
   CardDescription,
   CardHeader,
 } from "~/components/ui/card";
+import { Skeleton } from "~/components/ui/skeleton";
 import { api } from "~/trpc/react";
 
 export function DailyQuests() {
   const { data, isPending } = api.quests.daily.useQuery();
-  if (isPending) return <div>Loading...</div>;
+  if (isPending) return <Skeleton className="h-8 w-full rounded-md" />;
   return (
     <>
       <Card className="w-full">

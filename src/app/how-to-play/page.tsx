@@ -17,7 +17,7 @@ export default function HowToPlay() {
           <Card className="w-full max-w-2xl shadow-lg">
             <CardHeader>
               <CardTitle className="text-center text-3xl font-bold">
-                How to Play P4nth3rNPC
+                How to Start Questing?
               </CardTitle>
               <CardDescription className="text-center">
                 Master the game with these simple steps and embark on your epic

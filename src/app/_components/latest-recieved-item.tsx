@@ -2,6 +2,7 @@
 
 import dayjs from "dayjs";
 import { Button } from "~/components/ui/button";
+import { Skeleton } from "~/components/ui/skeleton";
 import { api } from "~/trpc/react";
 
 const TransactionCard = ({
@@ -29,7 +30,7 @@ const TransactionCard = ({
 };
 export default function LatestRecievedItem() {
   const { data, isPending } = api.npcTransaction.latest.useQuery();
-  if (isPending) return <div>Loading...</div>;
+  if (isPending) return <Skeleton className="h-8 w-full rounded-md" />;
   return (
     <div className="flex w-full flex-col gap-2 rounded-md border bg-card p-2">
       <div className="flex w-full items-center justify-between">
