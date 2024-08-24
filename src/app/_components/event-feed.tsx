@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+import Image from "next/image";
 import { useEffect } from "react";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 import { toast } from "sonner";
@@ -45,8 +46,24 @@ const EventFeed = () => {
         item,
       });
       await utils.user.get.invalidate();
-      toast.success(giver + " just filled in a quest with a " + item, {
-        important: true,
+      toast.success("Quest item received!", {
+        description: giver + " just filled in a quest with a " + item,
+        dismissible: false,
+        icon: (
+          <Image
+            alt="gifticon"
+            src="/images/icons/scroll.png"
+            width={160}
+            height={160}
+          />
+        ),
+        style: {
+          backgroundColor: "#fc814a",
+          color: "black",
+          fontWeight: "bold",
+          fontSize: "1rem",
+          fontFamily: '"Ubuntu Mono"',
+        },
       });
     },
   });
