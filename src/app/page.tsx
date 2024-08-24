@@ -10,6 +10,7 @@ import {
 } from "~/components/ui/card";
 import { api, HydrateClient } from "~/trpc/server";
 import { DailyQuests } from "./_components/daily-quests";
+import LatestRecievedItem from "./_components/latest-recieved-item";
 
 export default async function Home() {
   void api.post.getLatest.prefetch();
@@ -22,7 +23,7 @@ export default async function Home() {
             <h1 className="text-center text-5xl font-bold">🔍 📜 ⭐ 🏆</h1>
             <CardDescription className="text-center">
               This is a companion app for p4nth3r.world, a place where you can
-              find quests, and trade with me
+              find quests, and get rewards!
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
@@ -31,12 +32,13 @@ export default async function Home() {
             </h2>
             <InitialisationModal />
             <Link href={"/how-to-play"}>
-              <Button variant={"link"}>
+              <Button variant={"secondary"} size={"sm"}>
                 <InfoIcon size={16} className="mr-2" /> How to play
               </Button>
             </Link>
           </CardContent>
         </Card>
+        <LatestRecievedItem />
         <DailyQuests />
       </main>
     </HydrateClient>

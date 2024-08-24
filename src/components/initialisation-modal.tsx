@@ -67,7 +67,7 @@ export function InitialisationModal() {
     <Dialog>
       <DialogTrigger asChild>
         <div>
-          <Button>Start Questing</Button>
+          <Button size={"sm"}>Start Questing</Button>
         </div>
       </DialogTrigger>
       <DialogContent>
@@ -96,7 +96,7 @@ export function InitialisationModal() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" disabled={createUser.isPending}>
+              <Button type="submit" disabled={createUser.isPending} size={"sm"}>
                 {createUser.isPending && (
                   <Loader2 className="mr-2 animate-spin" size={16} />
                 )}

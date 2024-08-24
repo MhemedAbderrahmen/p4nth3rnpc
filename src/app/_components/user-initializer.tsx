@@ -36,7 +36,7 @@ export function UserInitializer({ params }: { params: { username: string } }) {
         <CardHeader className="flex w-full gap-4">
           <h1>User successfully initialized </h1>
           <Link href={"/journal/" + createUser.data.username}>
-            <Button className="font-semibold">
+            <Button className="font-semibold" size={"sm"}>
               View journal {createUser.data.username}
             </Button>
           </Link>

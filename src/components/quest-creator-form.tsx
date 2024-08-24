@@ -166,7 +166,7 @@ export function QuestCreatorForm() {
             />
           )}
 
-          <Button type="submit" disabled={createItem.isPending}>
+          <Button type="submit" disabled={createItem.isPending} size={"sm"}>
             {createItem.isPending && (
               <Loader2 className="mr-2 animate-spin" size={16} />
             )}
