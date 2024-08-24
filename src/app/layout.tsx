@@ -12,7 +12,12 @@ import EventFeed from "./_components/event-feed";
 export const metadata: Metadata = {
   title: "P4nth3r NPC | Quests",
   description: "P4nth3r Quests Comapanion App",
-  icons: [{ rel: "icon", url: "./favicon.ico" }],
+  icons: [
+    {
+      rel: "icon",
+      url: `data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%25%22 y=%220.95em%22 text-anchor=%22middle%22 font-size=%2290px%22>${`📜`}</text></svg>`,
+    },
+  ],
 };
 
 const TopNav = () => {
