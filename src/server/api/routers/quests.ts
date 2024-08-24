@@ -16,7 +16,7 @@ export const questsRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      return await ctx.db.quest.create({
+      const quest = await ctx.db.quest.create({
         data: {
           title: input.title,
           description: input.description,
@@ -26,6 +26,19 @@ export const questsRouter = createTRPCRouter({
           },
         },
       });
+
+      await ctx.db.inventory.update({
+        where: {
+          botName: "p4nth3rquestbot",
+        },
+        data: {
+          totalQuests: {
+            increment: 1,
+          },
+        },
+      });
+
+      return quest;
     }),
 
   get: publicProcedure.query(async ({ ctx }) => {

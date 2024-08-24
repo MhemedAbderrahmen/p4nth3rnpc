@@ -39,15 +39,12 @@ const validEvents = [
 
 const EventFeed = () => {
   const utils = api.useUtils();
+  //Creates an inventory item
+  const createInventoryItem = api.inventoryItem.create.useMutation();
   const createNpcTransaction = api.npcTransaction.create.useMutation({
-    async onSuccess({ giver, item }) {
-      await fillInQuest.mutateAsync({
-        username: giver,
-        item,
-      });
-      await utils.user.get.invalidate();
+    async onSuccess({ giver, itemName, itemRarity }) {
       toast.success("Item received!", {
-        description: giver + " just filled in a quest with a " + item,
+        description: giver + " just filled in a quest with a " + itemName,
         dismissible: false,
         position: "top-right",
         icon: (
@@ -62,9 +59,25 @@ const EventFeed = () => {
           color: "white",
           fontWeight: "bolder",
           fontSize: "1rem",
-          fontFamily: '"Ubuntu Mono"',
         },
       });
+
+      await createInventoryItem.mutateAsync({
+        name: itemName,
+        rarity: itemRarity,
+        username: "p4nth3rquestbot",
+        type: "default",
+      });
+
+      await utils.npcTransaction.latest.invalidate();
+      await utils.inventory.get.invalidate();
+
+      await fillInQuest.mutateAsync({
+        username: giver,
+        item: itemName,
+      });
+
+      await utils.user.get.invalidate();
     },
   });
 
@@ -89,6 +102,7 @@ const EventFeed = () => {
           createNpcTransaction.mutate({
             giver: messageObj.data.giver ?? "",
             item: messageObj.data.item ?? "",
+            rarity: messageObj.data.rarity ?? 0,
           });
         }
       }

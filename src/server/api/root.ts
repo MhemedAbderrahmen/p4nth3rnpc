@@ -1,8 +1,8 @@
-import { postRouter } from "~/server/api/routers/post";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
+import { inventoryRouter } from "./routers/inventory";
+import { inventoryItemRouter } from "./routers/inventory-item";
 import { itemsRouter } from "./routers/items";
 import { npcTransactionRouter } from "./routers/npc-transaction";
-import { questItemRouter } from "./routers/quest-item";
 import { questsRouter } from "./routers/quests";
 import { userQuestItemsRouter } from "./routers/user-quest-items";
 import { userQuestsRouter } from "./routers/user-quests";
@@ -14,14 +14,14 @@ import { userRouter } from "./routers/users";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  post: postRouter,
   user: userRouter,
   quests: questsRouter,
   userQuests: userQuestsRouter,
   userQuestItems: userQuestItemsRouter,
   npcTransaction: npcTransactionRouter,
-  questItem: questItemRouter,
   items: itemsRouter,
+  inventory: inventoryRouter,
+  inventoryItem: inventoryItemRouter,
 });
 
 // export type definition of API

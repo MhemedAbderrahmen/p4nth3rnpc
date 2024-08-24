@@ -23,7 +23,7 @@ model User {
 
 model Item {
   id   String @id @default(cuid())
-  name String
+  name String @unique
 
   createdAt DateTime @default(now())
   Quest     Quest?   @relation(fields: [questId], references: [id])
@@ -32,7 +32,7 @@ model Item {
 
 model UserQuestItem {
   id       String  @id @default(cuid())
-  name     String
+  name     String  @unique
   amount   Int
   filledIn Boolean @default(false)
 
@@ -66,19 +66,36 @@ model Quest {
 }
 
 model NpcTransaction {
-  id    Int    @id @default(autoincrement())
-  item  String
-  giver String
+  id         Int    @id @default(autoincrement())
+  giver      String
+  itemName   String
+  itemRarity Int
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  name      String
+model InventoryItem {
+  id          String  @id @default(cuid())
+  name        String  @unique
+  type        String
+  rarity      Int
+  inventoryId String?
+
+  inventory Inventory? @relation(fields: [inventoryId], references: [id])
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
 
-  @@index([name])
+model Inventory {
+  id             String          @id @default(cuid())
+  botName        String          @unique
+  inventoryItems InventoryItem[]
+  wealthIndex    Int
+  totalQuests    Int
+  location       String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
