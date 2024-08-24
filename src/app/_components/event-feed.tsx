@@ -46,21 +46,21 @@ const EventFeed = () => {
         item,
       });
       await utils.user.get.invalidate();
-      toast.success("Quest item received!", {
+      toast.success("Item received!", {
         description: giver + " just filled in a quest with a " + item,
         dismissible: false,
+        position: "top-right",
         icon: (
           <Image
             alt="gifticon"
             src="/images/icons/scroll.png"
-            width={160}
-            height={160}
+            width={400}
+            height={400}
           />
         ),
         style: {
-          backgroundColor: "#fc814a",
-          color: "black",
-          fontWeight: "bold",
+          color: "white",
+          fontWeight: "bolder",
           fontSize: "1rem",
           fontFamily: '"Ubuntu Mono"',
         },
