@@ -8,13 +8,11 @@ import {
   CardDescription,
   CardHeader,
 } from "~/components/ui/card";
-import { api, HydrateClient } from "~/trpc/server";
+import { HydrateClient } from "~/trpc/server";
 import { DailyQuests } from "./_components/daily-quests";
 import LatestRecievedItem from "./_components/latest-recieved-item";
 
 export default async function Home() {
-  void api.post.getLatest.prefetch();
-
   return (
     <HydrateClient>
       <main className="flex min-h-screen w-full flex-col items-center gap-4">
