@@ -1,7 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 "use client";
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import Image from "next/image";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "~/components/ui/card";
 import { api } from "~/trpc/react";
 
 export function UserDetails({ params }: { params: { username: string } }) {
@@ -36,27 +42,31 @@ export function UserDetails({ params }: { params: { username: string } }) {
           <Card className="w-full" key={index}>
             <CardHeader>
               <h3 className="text-xl font-bold">⭐ {userQuest.quest.title}</h3>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-col gap-4">
-                <p>
+              <CardDescription className="flex flex-col gap-2">
+                <div className="dark:text-white">
                   <b>Details:</b> {userQuest.quest.description}
-                </p>
-                <p>
-                  <b>Quest reward:</b> <span>{userQuest.quest.reward} 🏆</span>
-                </p>
-                <div>
-                  <b>Items to collect</b>
-                  <ul>
-                    {userQuest.userQuestItems.map((item) => (
-                      <li key={index}>
-                        {item.name} x{item.amount}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
-              </div>
-            </CardContent>
+                <div className="text-emerald-500">
+                  <b>Quest reward: {userQuest.quest.reward} 🏆</b>
+                </div>
+                <div className="flex flex-col gap-2 capitalize text-white">
+                  Required Items:
+                  {userQuest.userQuestItems.map((item) => (
+                    <div key={index} className="flex items-center gap-2">
+                      <div className="rounded-full border-2 border-primary bg-secondary p-2">
+                        <Image
+                          src="/images/icons/package.png"
+                          alt="potato"
+                          width={18}
+                          height={18}
+                        />
+                      </div>
+                      <div>{item.name} x1</div>
+                    </div>
+                  ))}
+                </div>
+              </CardDescription>
+            </CardHeader>
           </Card>
         ) : null,
       )}
@@ -68,26 +78,31 @@ export function UserDetails({ params }: { params: { username: string } }) {
               <h3 className="flex items-center gap-4 text-xl font-bold">
                 ⭐ {userQuest.quest.title}
               </h3>
-            </CardHeader>
-            <CardContent>
-              <div className="flex flex-col gap-4">
-                <p>
+              <CardDescription className="flex flex-col gap-2">
+                <div className="dark:text-white">
                   <b>Details:</b> {userQuest.quest.description}
-                </p>
-                <div>
-                  <b>Reward recieved:</b>{" "}
-                  <span>{userQuest.quest.reward} 🏆</span>
                 </div>
-                <div>
-                  <b>Items:</b>
+                <div className="text-emerald-500">
+                  <b>Quest reward: {userQuest.quest.reward} 🏆</b>
+                </div>
+                <div className="flex flex-col gap-2 capitalize text-white">
+                  Delivered Items:
                   {userQuest.userQuestItems.map((item) => (
-                    <div key={index}>
-                      {item.name} x{item.amount}
+                    <div key={index} className="flex items-center gap-2">
+                      <div className="rounded-full border-2 border-primary bg-secondary p-2">
+                        <Image
+                          src="/images/icons/package.png"
+                          alt="potato"
+                          width={18}
+                          height={18}
+                        />
+                      </div>
+                      <div>{item.name} x1</div>
                     </div>
                   ))}
                 </div>
-              </div>
-            </CardContent>
+              </CardDescription>
+            </CardHeader>
           </Card>
         ) : null,
       )}
