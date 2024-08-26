@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-} from "~/components/ui/card";
+import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
 import { api } from "~/trpc/react";
 
@@ -14,18 +9,14 @@ export function DailyQuests() {
   if (isPending) return <Skeleton className="h-8 w-full rounded-md" />;
   return (
     <>
-      <Card className="w-full">
-        <CardHeader>
-          <h2 className="flex items-center gap-2 text-2xl">🔍 Daily quests</h2>
-          <CardDescription>
-            These are the daily quests that will update every day at midnight
-          </CardDescription>
-        </CardHeader>
-      </Card>
+      <div className="w-full rounded-lg border bg-emerald-600 p-2 text-center font-semibold text-muted dark:bg-emerald-300">
+        🔍 Daily quests
+      </div>
+
       {data?.map((quest, index) => (
         <Card className="w-full" key={index}>
           <CardHeader>
-            <h3 className="flex items-center gap-2 text-xl font-bold">
+            <h3 className="flex items-center gap-4 text-xl font-bold">
               <div className="animate-bounce">⭐</div> {quest.title}
             </h3>
           </CardHeader>
@@ -34,7 +25,7 @@ export function DailyQuests() {
               <p>
                 <b>Details:</b> {quest.description}
               </p>
-              <p className="flex w-full items-center gap-2">
+              <p className="flex w-full items-center gap-4">
                 <b>Quest reward:</b> <span>{quest.reward} 🏆</span>
               </p>
             </div>

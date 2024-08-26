@@ -66,9 +66,11 @@ export function InitialisationModal() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div>
-          <Button size={"sm"}>Start Questing</Button>
-        </div>
+        <span>
+          <Button className="font-display text-xl font-bold">
+            Start Questing
+          </Button>
+        </span>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

@@ -9,7 +9,7 @@ export default function InventoryItems() {
   });
   if (isPending) return <div>Loading...</div>;
   return (
-    <div className="grid w-full grid-cols-3 gap-2 capitalize">
+    <div className="grid w-full grid-cols-3 gap-4 capitalize">
       {data?.inventoryItems.map((inventoryItem, index) => (
         <div
           key={index}

@@ -65,12 +65,12 @@ export function UserDetails({ params }: { params: { username: string } }) {
         !userQuest.active ? (
           <Card className="w-full" key={index}>
             <CardHeader>
-              <h3 className="flex items-center gap-2 text-xl font-bold">
+              <h3 className="flex items-center gap-4 text-xl font-bold">
                 ⭐ {userQuest.quest.title}
               </h3>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-4">
                 <p>
                   <b>Details:</b> {userQuest.quest.description}
                 </p>

@@ -69,7 +69,7 @@ export function ItemCreatorForm() {
           </Button>
         </form>
       </Form>
-      <div className="flex w-full flex-col gap-2">
+      <div className="flex w-full flex-col gap-4">
         {data?.map((item, index) => (
           <div
             key={index}

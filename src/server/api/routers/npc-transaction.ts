@@ -24,7 +24,7 @@ export const npcTransactionRouter = createTRPCRouter({
   latest: publicProcedure.query(async ({ ctx }) => {
     return await ctx.db.npcTransaction.findMany({
       orderBy: { createdAt: "desc" },
-      take: 5,
+      take: 1,
     });
   }),
 });

@@ -11,6 +11,7 @@ import {
 import { HydrateClient } from "~/trpc/server";
 import { DailyQuests } from "./_components/daily-quests";
 import LatestRecievedItem from "./_components/latest-recieved-item";
+import TotalItems from "./_components/total-items";
 
 export default async function Home() {
   return (
@@ -19,10 +20,6 @@ export default async function Home() {
         <Card className="w-full text-center">
           <CardHeader className="flex flex-col gap-4">
             <h1 className="text-center text-5xl font-bold">🔍 📜 ⭐ 🏆</h1>
-            <CardDescription className="text-center">
-              This is a companion app for p4nth3r.world, a place where you can
-              find quests, and get rewards!
-            </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-4">
             <h2 className="text-2xl">
@@ -34,9 +31,16 @@ export default async function Home() {
                 <InfoIcon size={16} className="mr-2" /> How to play
               </Button>
             </Link>
+            <CardDescription className="text-center">
+              This is a companion app for p4nth3r.world, a place where you can
+              find quests, and get rewards!
+            </CardDescription>
           </CardContent>
         </Card>
-        <LatestRecievedItem />
+        <div className="flex w-full flex-col gap-4 md:flex-row">
+          <TotalItems />
+          <LatestRecievedItem />
+        </div>
         <DailyQuests />
       </main>
     </HydrateClient>

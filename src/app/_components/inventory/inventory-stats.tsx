@@ -12,7 +12,7 @@ export default function InventoryStats() {
   return (
     <>
       <Card className="w-full text-center">
-        <CardHeader className="flex flex-col items-center justify-center gap-2">
+        <CardHeader className="flex flex-col items-center justify-center gap-4">
           <Trophy size={60} />
           <h4 className="text-xl">Wealth Index</h4>
           <h4 className="text-3xl">{data?.wealthIndex}</h4>

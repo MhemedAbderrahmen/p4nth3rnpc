@@ -94,6 +94,7 @@ const EventFeed = () => {
   useEffect(() => {
     if (lastMessage !== null) {
       const messageObj: Event = JSON.parse(lastMessage.data as string);
+      console.log("🚀 ~ useEffect ~ messageObj:", messageObj);
       if (validEvents.includes(messageObj.type)) {
         if (
           messageObj.type === "gift" &&
@@ -118,7 +119,7 @@ const EventFeed = () => {
   }[readyState];
 
   return (
-    <div className="flex flex-row items-center gap-2">
+    <div className="flex flex-row items-center gap-4">
       Connection status{" "}
       {connectionStatus === "Connecting" && (
         <div className="h-2 w-2 rounded-full bg-orange-500" />
