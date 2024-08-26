@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { Card } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
 import { api } from "~/trpc/react";
@@ -31,7 +30,7 @@ const TransactionCard = ({
         <div className="text-lg font-bold capitalize text-primary">
           {itemName}
         </div>
-        <div className="font-semibold capitalize text-emerald-400">
+        <div className="font-semibold capitalize text-emerald-500">
           Rarity: {itemRarity}
         </div>
         <div>@{giver}</div>
@@ -40,7 +39,6 @@ const TransactionCard = ({
   );
 };
 export default function LatestRecievedItem() {
-  const router = useRouter();
   const { data, isPending } = api.npcTransaction.latest.useQuery();
   if (isPending) return <Skeleton className="h-8 w-full rounded-md" />;
   return (

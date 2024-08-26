@@ -43,24 +43,27 @@ const EventFeed = () => {
   const createInventoryItem = api.inventoryItem.create.useMutation();
   const createNpcTransaction = api.npcTransaction.create.useMutation({
     async onSuccess({ giver, itemName, itemRarity }) {
-      toast.success("Item received!", {
-        description: giver + " just filled in a quest with a " + itemName,
-        dismissible: false,
-        position: "top-right",
-        icon: (
-          <Image
-            alt="gifticon"
-            src="/images/icons/scroll.png"
-            width={400}
-            height={400}
-          />
-        ),
-        style: {
-          color: "white",
-          fontWeight: "bolder",
-          fontSize: "1rem",
+      toast.success(
+        giver + " just filled in a quest with a " + itemName + "!",
+        {
+          position: "top-right",
+          icon: (
+            <Image
+              alt="gifticon"
+              src="/images/icons/scroll.png"
+              width={1080}
+              height={1920}
+            />
+          ),
+          style: {
+            color: "white",
+            fontWeight: "bolder",
+            fontSize: "1rem",
+            backgroundColor: "#fc814a",
+            fontFamily: "monospace",
+          },
         },
-      });
+      );
 
       await createInventoryItem.mutateAsync({
         name: itemName,

@@ -33,7 +33,7 @@ export default function TotalItems() {
           <div className="text-lg font-bold capitalize text-primary">
             Inventory Items ({data?.inventoryItems.length})
           </div>
-          <div className="font-semibold capitalize text-emerald-400">
+          <div className="font-semibold capitalize text-emerald-500">
             {data?.location}
           </div>
           <div>@p4nth3rquestbot</div>

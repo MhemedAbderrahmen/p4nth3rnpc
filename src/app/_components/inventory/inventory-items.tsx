@@ -1,6 +1,6 @@
 "use client";
 
-import { BugIcon } from "lucide-react";
+import Image from "next/image";
 import { api } from "~/trpc/react";
 
 export default function InventoryItems() {
@@ -9,19 +9,41 @@ export default function InventoryItems() {
   });
   if (isPending) return <div>Loading...</div>;
   return (
-    <div className="grid w-full grid-cols-3 gap-4 capitalize">
-      {data?.inventoryItems.map((inventoryItem, index) => (
-        <div
-          key={index}
-          className="col-span-1 flex h-40 flex-col items-center justify-center rounded-md bg-card p-4 text-center"
-        >
-          <div>
-            <BugIcon />
+    <div className="flex w-full flex-col gap-2 capitalize">
+      {data?.inventoryItems.map(
+        (
+          inventoryItem: {
+            id: string;
+            name: string;
+            type: string;
+            rarity: number;
+            inventoryId: string | null;
+            createdAt: Date;
+            updatedAt: Date;
+          },
+          index,
+        ) => (
+          <div
+            key={index}
+            className="col-span-1 flex flex-row items-center gap-4 rounded-md bg-card p-2"
+          >
+            <div className="rounded-full border-2 border-primary bg-secondary p-1">
+              <Image
+                src="/images/icons/potato.png"
+                alt="potato"
+                width={24}
+                height={24}
+              />
+            </div>
+            <div className="flex flex-col font-bold">
+              <small className="text-primary">{inventoryItem.name}</small>
+              <small className="text-emerald-500">
+                Rarity {inventoryItem.rarity}
+              </small>
+            </div>
           </div>
-          <div>{inventoryItem.name}</div>
-          <div>Rarity {inventoryItem.rarity}</div>
-        </div>
-      ))}
+        ),
+      )}
     </div>
   );
 }
