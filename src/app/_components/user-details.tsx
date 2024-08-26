@@ -55,7 +55,7 @@ export function UserDetails({ params }: { params: { username: string } }) {
                     <div key={index} className="flex items-center gap-2">
                       <div className="rounded-full border-2 border-primary bg-secondary p-2">
                         <Image
-                          src="/images/icons/package.png"
+                          src={`/images/icons/${item.name}.png`}
                           alt="potato"
                           width={18}
                           height={18}
@@ -91,7 +91,7 @@ export function UserDetails({ params }: { params: { username: string } }) {
                     <div key={index} className="flex items-center gap-2">
                       <div className="rounded-full border-2 border-primary bg-secondary p-2">
                         <Image
-                          src="/images/icons/package.png"
+                          src={`/images/icons/${item.name}.png`}
                           alt="potato"
                           width={18}
                           height={18}

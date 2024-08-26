@@ -1,13 +1,25 @@
 "use client";
 
 import Image from "next/image";
+import { Skeleton } from "~/components/ui/skeleton";
 import { api } from "~/trpc/react";
 
 export default function InventoryItems() {
   const { data, isPending } = api.inventory.get.useQuery({
     username: "p4nth3rquestbot",
   });
-  if (isPending) return <div>Loading...</div>;
+  if (isPending)
+    return (
+      <div className="flex w-full flex-col gap-2">
+        <Skeleton className="h-8 w-full rounded-md" />
+        <Skeleton className="h-8 w-full rounded-md" />
+        <Skeleton className="h-8 w-full rounded-md" />
+        <Skeleton className="h-8 w-full rounded-md" />
+        <Skeleton className="h-8 w-full rounded-md" />
+        <Skeleton className="h-8 w-full rounded-md" />
+        <Skeleton className="h-8 w-full rounded-md" />
+      </div>
+    );
   return (
     <div className="flex w-full flex-col gap-2 capitalize">
       {data?.inventoryItems.map(
@@ -29,7 +41,7 @@ export default function InventoryItems() {
           >
             <div className="rounded-full border-2 border-primary bg-secondary p-1">
               <Image
-                src="/images/icons/potato.png"
+                src={`/images/icons/${inventoryItem.name}.png`}
                 alt="potato"
                 width={24}
                 height={24}
