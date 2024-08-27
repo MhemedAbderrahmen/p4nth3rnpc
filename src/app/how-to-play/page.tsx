@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { InitialisationModal } from "~/components/initialisation-modal";
 import {
   Card,
   CardContent,
@@ -78,9 +77,6 @@ export default function HowToPlay() {
                     market later on.
                   </p>
                 </div>
-              </div>
-              <div className="mt-6 text-center">
-                <InitialisationModal />
               </div>
             </CardContent>
           </Card>

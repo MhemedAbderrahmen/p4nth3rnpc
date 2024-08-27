@@ -4,6 +4,7 @@ import { TwitchIcon } from "lucide-react";
 import { type Session } from "next-auth";
 import { signIn, signOut } from "next-auth/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Button } from "~/components/ui/button";
 import { api } from "~/trpc/react";
@@ -13,6 +14,7 @@ type UserMenuButtonProps = {
 };
 
 export default function UserMenuButton({ session }: UserMenuButtonProps) {
+  const router = useRouter();
   const user = session?.user;
   const verifyUser = api.user.verify.useMutation({
     onSuccess({ picture }) {
@@ -33,11 +35,12 @@ export default function UserMenuButton({ session }: UserMenuButtonProps) {
       {user ? (
         <div className="flex flex-row items-center gap-2">
           <Image
+            onClick={() => router.push("/journal/" + user.name)}
             src={user?.image ?? ""}
             alt="Profile picture"
             width={40}
             height={40}
-            className="w-10 rounded-full"
+            className="w-10 cursor-pointer rounded-full transition-all hover:border-2 hover:border-primary"
           />
           <button onClick={() => signOut({ callbackUrl: "/" })}>
             Sign Out

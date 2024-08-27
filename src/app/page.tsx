@@ -1,6 +1,5 @@
 import { InfoIcon } from "lucide-react";
 import Link from "next/link";
-import { InitialisationModal } from "~/components/initialisation-modal";
 import { Button } from "~/components/ui/button";
 import {
   Card,
@@ -25,7 +24,6 @@ export default async function Home() {
             <h2 className="text-2xl">
               To get started on your adventure click the button below
             </h2>
-            <InitialisationModal />
             <Link href={"/how-to-play"}>
               <Button variant={"secondary"} size={"sm"}>
                 <InfoIcon size={16} className="mr-2" /> How to play
