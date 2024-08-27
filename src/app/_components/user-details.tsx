@@ -2,12 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 "use client";
 import Image from "next/image";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { api } from "~/trpc/react";
 
 export function UserDetails({ params }: { params: { username: string } }) {
@@ -42,31 +37,33 @@ export function UserDetails({ params }: { params: { username: string } }) {
           <Card className="w-full" key={index}>
             <CardHeader>
               <h3 className="text-xl font-bold">⭐ {userQuest.quest.title}</h3>
-              <CardDescription className="flex flex-col gap-2">
-                <div className="dark:text-white">
-                  <b>Details:</b> {userQuest.quest.description}
-                </div>
-                <div className="text-emerald-500">
-                  <b>Quest reward: {userQuest.quest.reward} 🏆</b>
-                </div>
-                <div className="flex flex-col gap-2 capitalize text-white">
-                  Required Items:
-                  {userQuest.userQuestItems.map((item) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <div className="rounded-full border-2 border-primary bg-secondary p-2">
-                        <Image
-                          src={`/images/icons/${item.name}.png`}
-                          alt="potato"
-                          width={18}
-                          height={18}
-                        />
-                      </div>
-                      <div>{item.name} x1</div>
-                    </div>
-                  ))}
-                </div>
-              </CardDescription>
             </CardHeader>
+            <CardContent className="flex flex-col gap-2">
+              <small className="dark:text-white">
+                <b>Details:</b> {userQuest.quest.description}
+              </small>
+              <br />
+              <small className="text-emerald-500">
+                <b>Quest reward: {userQuest.quest.reward} 🏆</b>
+              </small>
+              <br />
+              <small className="flex flex-col gap-2 capitalize text-white">
+                Required Items:
+                {userQuest.userQuestItems.map((item) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <div className="rounded-full border-2 border-primary bg-secondary p-2">
+                      <Image
+                        src={`/images/icons/${item.name}.png`}
+                        alt="potato"
+                        width={18}
+                        height={18}
+                      />
+                    </div>
+                    <div>{item.name} x1</div>
+                  </div>
+                ))}
+              </small>
+            </CardContent>
           </Card>
         ) : null,
       )}
@@ -78,31 +75,33 @@ export function UserDetails({ params }: { params: { username: string } }) {
               <h3 className="flex items-center gap-4 text-xl font-bold">
                 ⭐ {userQuest.quest.title}
               </h3>
-              <CardDescription className="flex flex-col gap-2">
-                <div className="dark:text-white">
-                  <b>Details:</b> {userQuest.quest.description}
-                </div>
-                <div className="text-emerald-500">
-                  <b>Quest reward: {userQuest.quest.reward} 🏆</b>
-                </div>
-                <div className="flex flex-col gap-2 capitalize text-white">
-                  Delivered Items:
-                  {userQuest.userQuestItems.map((item) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <div className="rounded-full border-2 border-primary bg-secondary p-2">
-                        <Image
-                          src={`/images/icons/${item.name}.png`}
-                          alt="potato"
-                          width={18}
-                          height={18}
-                        />
-                      </div>
-                      <div>{item.name} x1</div>
-                    </div>
-                  ))}
-                </div>
-              </CardDescription>
             </CardHeader>
+            <CardContent className="flex flex-col gap-2">
+              <small className="dark:text-white">
+                <b>Details:</b> {userQuest.quest.description}
+              </small>
+              <br />
+              <small className="text-emerald-500">
+                <b>Quest reward: {userQuest.quest.reward} 🏆</b>
+              </small>
+              <br />
+              <small className="flex flex-col gap-2 capitalize text-white">
+                Delivered Items:
+                {userQuest.userQuestItems.map((item) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <div className="rounded-full border-2 border-primary bg-secondary p-2">
+                      <Image
+                        src={`/images/icons/${item.name}.png`}
+                        alt="potato"
+                        width={18}
+                        height={18}
+                      />
+                    </div>
+                    <div>{item.name} x1</div>
+                  </div>
+                ))}
+              </small>
+            </CardContent>
           </Card>
         ) : null,
       )}

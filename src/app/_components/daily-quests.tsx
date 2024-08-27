@@ -1,6 +1,6 @@
 "use client";
 
-import { Card, CardDescription, CardHeader } from "~/components/ui/card";
+import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
 import { api } from "~/trpc/react";
 
@@ -19,15 +19,16 @@ export function DailyQuests() {
             <h3 className="flex items-center gap-4 text-xl font-bold">
               <div className="animate-bounce">⭐</div> {quest.title}
             </h3>
-            <CardDescription>
-              <div className="dark:text-white">
-                <b>Details:</b> {quest.description}
-              </div>
-              <div className="text-emerald-500">
-                <b>Quest reward: {quest.reward} 🏆</b>
-              </div>
-            </CardDescription>
           </CardHeader>
+          <CardContent>
+            <small className="dark:text-white">
+              <b>Details:</b> {quest.description}
+            </small>
+            <br />
+            <small className="text-emerald-500">
+              <b>Quest reward: {quest.reward} 🏆</b>
+            </small>
+          </CardContent>
         </Card>
       ))}
     </>
