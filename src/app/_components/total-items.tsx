@@ -18,7 +18,7 @@ export default function TotalItems() {
         p4nth3rquestbot&apos;s Inventory{" "}
       </div>
       <Card
-        className="flex w-full cursor-pointer flex-row items-center justify-center gap-4 p-2 transition-all hover:shadow-lg"
+        className="flex w-full cursor-pointer flex-row items-center justify-center gap-4 p-2 transition-all hover:border-primary hover:shadow-lg"
         onClick={() => router.push("/inventory")}
       >
         <div className="rounded-full border-2 border-primary bg-secondary p-2">

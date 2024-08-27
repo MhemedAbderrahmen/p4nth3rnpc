@@ -33,7 +33,7 @@ export default function UserMenuButton({ session }: UserMenuButtonProps) {
   return (
     <div className="flex items-center justify-end">
       {user ? (
-        <div className="flex flex-row items-center gap-2">
+        <div className="flex flex-row items-center gap-4">
           <Image
             onClick={() => router.push("/journal/" + user.name)}
             src={user?.image ?? ""}
@@ -42,9 +42,7 @@ export default function UserMenuButton({ session }: UserMenuButtonProps) {
             height={40}
             className="w-10 cursor-pointer rounded-full transition-all hover:border-2 hover:border-primary"
           />
-          <button onClick={() => signOut({ callbackUrl: "/" })}>
-            Sign Out
-          </button>
+          <button onClick={() => signOut({ callbackUrl: "/" })}>Log Out</button>
         </div>
       ) : (
         <Button

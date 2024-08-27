@@ -10,7 +10,7 @@ export default function InventoryItems() {
   });
   if (isPending)
     return (
-      <div className="flex w-full flex-col gap-2">
+      <div className="flex w-full flex-col gap-4">
         <Skeleton className="h-8 w-full rounded-md" />
         <Skeleton className="h-8 w-full rounded-md" />
         <Skeleton className="h-8 w-full rounded-md" />
@@ -21,7 +21,7 @@ export default function InventoryItems() {
       </div>
     );
   return (
-    <div className="flex w-full flex-col gap-2 capitalize">
+    <div className="flex w-full flex-col gap-4 capitalize">
       {data?.inventoryItems.map(
         (
           inventoryItem: {

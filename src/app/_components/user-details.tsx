@@ -38,7 +38,7 @@ export function UserDetails({ params }: { params: { username: string } }) {
             <CardHeader>
               <h3 className="text-xl font-bold">⭐ {userQuest.quest.title}</h3>
             </CardHeader>
-            <CardContent className="flex flex-col gap-2">
+            <CardContent className="flex flex-col gap-4">
               <small className="dark:text-white">
                 <b>Details:</b> {userQuest.quest.description}
               </small>
@@ -47,10 +47,10 @@ export function UserDetails({ params }: { params: { username: string } }) {
                 <b>Quest reward: {userQuest.quest.reward} 🏆</b>
               </small>
               <br />
-              <small className="flex flex-col gap-2 capitalize text-white">
+              <small className="flex flex-col gap-4 capitalize text-white">
                 Required Items:
                 {userQuest.userQuestItems.map((item) => (
-                  <div key={index} className="flex items-center gap-2">
+                  <div key={index} className="flex items-center gap-4">
                     <div className="rounded-full border-2 border-primary bg-secondary p-2">
                       <Image
                         src={`/images/icons/${item.name}.png`}
@@ -76,7 +76,7 @@ export function UserDetails({ params }: { params: { username: string } }) {
                 ⭐ {userQuest.quest.title}
               </h3>
             </CardHeader>
-            <CardContent className="flex flex-col gap-2">
+            <CardContent className="flex flex-col gap-4">
               <small className="dark:text-white">
                 <b>Details:</b> {userQuest.quest.description}
               </small>
@@ -85,10 +85,10 @@ export function UserDetails({ params }: { params: { username: string } }) {
                 <b>Quest reward: {userQuest.quest.reward} 🏆</b>
               </small>
               <br />
-              <small className="flex flex-col gap-2 capitalize text-white">
+              <small className="flex flex-col gap-4 capitalize text-white">
                 Delivered Items:
                 {userQuest.userQuestItems.map((item) => (
-                  <div key={index} className="flex items-center gap-2">
+                  <div key={index} className="flex items-center gap-4">
                     <div className="rounded-full border-2 border-primary bg-secondary p-2">
                       <Image
                         src={`/images/icons/${item.name}.png`}
