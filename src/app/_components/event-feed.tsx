@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect } from "react";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 import { toast } from "sonner";
+import { ModeToggle } from "~/components/mode-toggle";
 import { api } from "~/trpc/react";
 
 type Event = {
@@ -121,20 +122,23 @@ const EventFeed = () => {
   }[readyState];
 
   return (
-    <div className="flex flex-row items-center gap-4">
-      Connection status{" "}
-      {connectionStatus === "Connecting" && (
-        <div className="h-2 w-2 rounded-full bg-orange-500" />
-      )}
-      {connectionStatus === "Open" && (
-        <div className="h-2 w-2 rounded-full bg-green-500" />
-      )}
-      {connectionStatus === "Closed" && (
-        <div className="h-2 w-2 rounded-full bg-red-500" />
-      )}
-      {connectionStatus === "Uninstantiated" && (
-        <div className="h-2 w-2 rounded-full bg-purple-500" />
-      )}
+    <div className="flex flex-row items-center justify-between gap-4">
+      <div className="flex items-center gap-2">
+        Connection status{" "}
+        {connectionStatus === "Connecting" && (
+          <div className="h-2 w-2 rounded-full bg-orange-500" />
+        )}
+        {connectionStatus === "Open" && (
+          <div className="h-2 w-2 rounded-full bg-green-500" />
+        )}
+        {connectionStatus === "Closed" && (
+          <div className="h-2 w-2 rounded-full bg-red-500" />
+        )}
+        {connectionStatus === "Uninstantiated" && (
+          <div className="h-2 w-2 rounded-full bg-purple-500" />
+        )}
+      </div>
+      <ModeToggle />
     </div>
   );
 };
