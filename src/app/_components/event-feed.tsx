@@ -97,7 +97,6 @@ const EventFeed = () => {
   useEffect(() => {
     if (lastMessage !== null) {
       const messageObj: Event = JSON.parse(lastMessage.data as string);
-      console.log("🚀 ~ useEffect ~ messageObj:", messageObj);
       if (validEvents.includes(messageObj.type)) {
         if (
           messageObj.type === "gift" &&
