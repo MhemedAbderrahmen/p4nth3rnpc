@@ -38,16 +38,14 @@ export function UserDetails({ params }: { params: { username: string } }) {
             <CardHeader>
               <h3 className="text-xl font-bold">⭐ {userQuest.quest.title}</h3>
             </CardHeader>
-            <CardContent className="flex flex-col gap-4">
-              <small className="dark:text-white">
+            <CardContent className="flex flex-col gap-2">
+              <div className="dark:text-white">
                 <b>Details:</b> {userQuest.quest.description}
-              </small>
-              <br />
-              <small className="text-emerald-500">
+              </div>
+              <div className="text-emerald-500">
                 <b>Quest reward: {userQuest.quest.reward} 🏆</b>
-              </small>
-              <br />
-              <small className="flex flex-col gap-4 capitalize dark:text-white">
+              </div>
+              <div className="flex flex-col gap-4 capitalize dark:text-white">
                 Required Items:
                 {userQuest.userQuestItems.map((item) => (
                   <div key={index} className="flex items-center gap-4">
@@ -62,7 +60,7 @@ export function UserDetails({ params }: { params: { username: string } }) {
                     <div className="font-bold text-primary">{item.name} x1</div>
                   </div>
                 ))}
-              </small>
+              </div>
             </CardContent>
           </Card>
         ) : null,
@@ -76,16 +74,14 @@ export function UserDetails({ params }: { params: { username: string } }) {
                 ⭐ {userQuest.quest.title}
               </h3>
             </CardHeader>
-            <CardContent className="flex flex-col gap-4">
-              <small className="dark:text-white">
+            <CardContent className="flex flex-col gap-2">
+              <div className="dark:text-white">
                 <b>Details:</b> {userQuest.quest.description}
-              </small>
-              <br />
-              <small className="text-emerald-500">
+              </div>
+              <div className="text-emerald-500">
                 <b>Quest reward: {userQuest.quest.reward} 🏆</b>
-              </small>
-              <br />
-              <small className="flex flex-col gap-4 capitalize text-white">
+              </div>
+              <div className="flex flex-col gap-4 capitalize dark:text-white">
                 Delivered Items:
                 {userQuest.userQuestItems.map((item) => (
                   <div key={index} className="flex items-center gap-4">
@@ -100,7 +96,7 @@ export function UserDetails({ params }: { params: { username: string } }) {
                     <div className="font-bold text-primary">{item.name} x1</div>
                   </div>
                 ))}
-              </small>
+              </div>
             </CardContent>
           </Card>
         ) : null,
