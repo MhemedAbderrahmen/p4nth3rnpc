@@ -2,7 +2,7 @@
 
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { Button } from "~/components/ui/button";
+import AcceptQuestConfirm from "~/components/accept-quest-modal";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
 import { api } from "~/trpc/react";
@@ -49,7 +49,7 @@ export function DailyQuests() {
             </div>
             {status === "authenticated" && (
               <div className="flex w-full justify-end">
-                <Button className="font-display font-bold">Accept</Button>
+                <AcceptQuestConfirm quest={quest} connectedUser={sessionData} />
               </div>
             )}
           </CardContent>

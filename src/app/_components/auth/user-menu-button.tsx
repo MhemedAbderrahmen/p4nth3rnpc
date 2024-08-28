@@ -16,11 +16,7 @@ type UserMenuButtonProps = {
 export default function UserMenuButton({ session }: UserMenuButtonProps) {
   const router = useRouter();
   const user = session?.user;
-  const verifyUser = api.user.verify.useMutation({
-    onSuccess({ picture }) {
-      console.log(picture);
-    },
-  });
+  const verifyUser = api.user.verify.useMutation();
   useEffect(() => {
     if (user) {
       verifyUser.mutate({
