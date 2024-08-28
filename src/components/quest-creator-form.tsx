@@ -37,31 +37,12 @@ export function QuestCreatorForm() {
     },
   });
 
-  const { data: users } = api.user.all.useQuery();
   const { data: items } = api.items.get.useQuery();
   const { data } = api.quests.get.useQuery();
 
-  const createUserQuestItems = api.userQuestItems.create.useMutation();
-  const createUserQuest = api.userQuests.create.useMutation();
-
   const createItem = api.quests.create.useMutation({
-    async onSuccess({ id }) {
-      if (users) {
-        const promises = users.map(async (user) => {
-          const userQuest = await createUserQuest.mutateAsync({
-            userId: user.id,
-            questId: id,
-          });
-          await createUserQuestItems.mutateAsync({
-            userId: user.id,
-            userQuestId: userQuest.id,
-            items: userQuest.quest.requiredItems.map((item) => item.name),
-          });
-        });
-
-        await Promise.all(promises);
-        await utils.quests.get.invalidate();
-      }
+    async onSuccess() {
+      await utils.quests.get.invalidate();
     },
   });
 

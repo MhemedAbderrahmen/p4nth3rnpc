@@ -34,7 +34,7 @@ model Item {
 
 model UserQuestItem {
   id       String  @id @default(cuid())
-  name     String  @unique
+  name     String
   amount   Int
   filledIn Boolean @default(false)
 
