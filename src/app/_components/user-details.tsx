@@ -47,7 +47,7 @@ export function UserDetails({ params }: { params: { username: string } }) {
                 <b>Quest reward: {userQuest.quest.reward} 🏆</b>
               </small>
               <br />
-              <small className="flex flex-col gap-4 capitalize text-white">
+              <small className="flex flex-col gap-4 capitalize dark:text-white">
                 Required Items:
                 {userQuest.userQuestItems.map((item) => (
                   <div key={index} className="flex items-center gap-4">
@@ -59,7 +59,7 @@ export function UserDetails({ params }: { params: { username: string } }) {
                         height={18}
                       />
                     </div>
-                    <div>{item.name} x1</div>
+                    <div className="font-bold text-primary">{item.name} x1</div>
                   </div>
                 ))}
               </small>
@@ -97,7 +97,7 @@ export function UserDetails({ params }: { params: { username: string } }) {
                         height={18}
                       />
                     </div>
-                    <div>{item.name} x1</div>
+                    <div className="font-bold text-primary">{item.name} x1</div>
                   </div>
                 ))}
               </small>

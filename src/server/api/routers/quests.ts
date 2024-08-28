@@ -67,6 +67,11 @@ export const questsRouter = createTRPCRouter({
       },
       include: {
         requiredItems: true,
+        userQuest: {
+          include: {
+            user: true,
+          },
+        },
       },
     });
   }),
