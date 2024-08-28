@@ -24,15 +24,15 @@ export default async function Home() {
             <h2 className="text-2xl">
               To get started on your adventure click the button below
             </h2>
+            <CardDescription className="text-center">
+              This is a companion app for p4nth3r.world, a place where you can
+              find quests, and get rewards!
+            </CardDescription>
             <Link href={"/how-to-play"}>
               <Button variant={"secondary"} size={"sm"}>
                 <InfoIcon size={16} className="mr-2" /> How to play
               </Button>
             </Link>
-            <CardDescription className="text-center">
-              This is a companion app for p4nth3r.world, a place where you can
-              find quests, and get rewards!
-            </CardDescription>
           </CardContent>
         </Card>
         <div className="flex w-full flex-col gap-4 md:flex-row">

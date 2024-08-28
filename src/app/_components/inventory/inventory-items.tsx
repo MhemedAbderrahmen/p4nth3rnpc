@@ -21,7 +21,7 @@ export default function InventoryItems() {
       </div>
     );
   return (
-    <div className="flex w-full flex-col gap-4 capitalize">
+    <div className="flex w-full flex-col gap-1 capitalize">
       {data?.inventoryItems.map(
         (
           inventoryItem: {

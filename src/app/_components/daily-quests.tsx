@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { Skeleton } from "~/components/ui/skeleton";
@@ -22,15 +23,23 @@ export function DailyQuests() {
               <div className="animate-bounce">⭐</div> {quest.title}
             </h3>
           </CardHeader>
-          <CardContent className="flex flex-col gap-1">
+          <CardContent className="flex flex-col gap-2">
             <div className="dark:text-white">
               <b>Details:</b> {quest.description}
             </div>
-            <div className="dark:text-white">
+            <div className="flex flex-col gap-2 dark:text-white">
               <b>Required Items:</b>
               {quest.requiredItems.map((item, index) => (
-                <div key={index} className="capitalize text-primary">
-                  {item.name}
+                <div key={index} className="flex items-center gap-2">
+                  <div className="rounded-full border-2 border-primary bg-secondary p-1">
+                    <Image
+                      src={`/images/icons/${item.name}.png`}
+                      alt="potato"
+                      width={24}
+                      height={24}
+                    />
+                  </div>
+                  <div className="capitalize text-primary">{item.name}</div>
                 </div>
               ))}
             </div>
