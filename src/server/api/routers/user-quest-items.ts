@@ -35,7 +35,6 @@ export const userQuestItemsRouter = createTRPCRouter({
       user.userQuests.map((userQuest) => {
         userQuest.userQuestItems.map(async (userQuestItem) => {
           if (userQuestItem.name === input.item) {
-            // TODO: Do this process only if amount of items === filledInAmount
             await ctx.db.userQuestItem.update({
               where: {
                 id: userQuestItem.id,
@@ -44,6 +43,14 @@ export const userQuestItemsRouter = createTRPCRouter({
                 filledIn: true,
               },
             });
+            // TODO: Do this process only if amount of items === filledInAmount
+            // * Check if all items are filled in, if yes then update userQuest to inactive and give user gold
+            const filledInAmount = userQuest.userQuestItems.filter(
+              (item) => item.filledIn,
+            ).length;
+
+            if (filledInAmount !== userQuest.quest.requiredItems.length) return;
+
             await ctx.db.userQuest.update({
               where: {
                 id: userQuest.id,
