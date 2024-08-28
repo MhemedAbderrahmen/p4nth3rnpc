@@ -43,9 +43,18 @@ export const userQuestItemsRouter = createTRPCRouter({
                 filledIn: true,
               },
             });
+            const updatedUserQuest = await ctx.db.userQuest.findFirst({
+              where: {
+                id: userQuest.id,
+              },
+              include: {
+                userQuestItems: true,
+              },
+            });
+            if (!updatedUserQuest) return;
             // TODO: Do this process only if amount of items === filledInAmount
             // * Check if all items are filled in, if yes then update userQuest to inactive and give user gold
-            const filledInAmount = userQuest.userQuestItems.filter(
+            const filledInAmount = updatedUserQuest.userQuestItems.filter(
               (item) => item.filledIn,
             ).length;
 
