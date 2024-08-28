@@ -22,21 +22,28 @@ export default function AcceptQuestConfirm({
   connectedUser,
 }: {
   quest: Quest;
-  connectedUser: Session;
+  connectedUser: Session | null;
 }) {
+  const utils = api.useUtils();
+
   const [isPending, setIsPending] = useState<boolean>(false);
-  const user = api.user.get.useQuery(connectedUser.user?.name ?? "");
+  const user = api.user.get.useQuery(connectedUser?.user?.name ?? "");
   const createUserQuest = api.userQuests.create.useMutation({
     async onSuccess({ id }) {
       await createUserQuestItems.mutateAsync({
         userId: user.data?.id ?? "",
-        items: quest.requiredItems.map((item) => item.id),
+        items: quest.requiredItems.map((item) => item.name),
         userQuestId: id,
       });
       setIsPending(false);
     },
   });
-  const createUserQuestItems = api.userQuestItems.create.useMutation();
+  const createUserQuestItems = api.userQuestItems.create.useMutation({
+    async onSuccess() {
+      await utils.quests.get.invalidate();
+      await utils.user.get.invalidate();
+    },
+  });
 
   const acceptQuest = async () => {
     setIsPending(true);

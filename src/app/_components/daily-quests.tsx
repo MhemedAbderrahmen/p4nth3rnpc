@@ -9,7 +9,15 @@ import { api } from "~/trpc/react";
 
 export function DailyQuests() {
   const { status, data: sessionData } = useSession();
+  const me = api.user.get.useQuery(sessionData?.user?.name ?? "");
   const { data, isPending } = api.quests.daily.useQuery();
+
+  function canAcceptQuest(questId: string) {
+    if (status === "unauthenticated") return false;
+    return !me.data?.userQuests
+      ?.map((quest) => quest.questId)
+      .includes(questId);
+  }
   if (isPending) return <Skeleton className="h-8 w-full rounded-md" />;
   return (
     <>
@@ -47,11 +55,11 @@ export function DailyQuests() {
               Quest reward:{" "}
               <span className="text-emerald-500">{quest.reward} 🏆</span>
             </div>
-            {status === "authenticated" && (
+            {canAcceptQuest(quest.id) ? (
               <div className="flex w-full justify-end">
                 <AcceptQuestConfirm quest={quest} connectedUser={sessionData} />
               </div>
-            )}
+            ) : null}
           </CardContent>
         </Card>
       ))}
