@@ -24,6 +24,7 @@ export function DailyQuests() {
       <div className="w-full rounded-lg border bg-emerald-600 p-2 text-center font-semibold text-muted dark:bg-emerald-300">
         🔍 Daily quest board
       </div>
+      {data?.length === 0 && <div>No Daily Quests Found</div>}
       {data?.map((quest, index) => (
         <Card className="w-full" key={index}>
           <CardHeader>
