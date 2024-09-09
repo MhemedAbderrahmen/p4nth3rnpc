@@ -57,7 +57,8 @@ export function UserDetails({ params }: { params: { username: string } }) {
                         height={18}
                       />
                     </div>
-                    <div className="font-bold text-primary">{item.name} x1</div>
+                    <div className="font-bold text-primary">{item.name} x1</div>{" "}
+                    {item.filledIn ? "✅" : "❌"}
                   </div>
                 ))}
               </div>

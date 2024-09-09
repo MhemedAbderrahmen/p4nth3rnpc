@@ -66,6 +66,7 @@ export function QuestCreatorForm() {
                 <FormControl>
                   <Input placeholder="The Stinky Situation" {...field} />
                 </FormControl>
+                l
                 <FormMessage />
               </FormItem>
             )}
