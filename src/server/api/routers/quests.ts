@@ -56,12 +56,12 @@ export const questsRouter = createTRPCRouter({
     const todayEnd = dayjs(now).endOf("day").toDate();
 
     return await ctx.db.quest.findMany({
-      where: {
-        createdAt: {
-          gte: todayStart,
-          lte: todayEnd,
-        },
-      },
+      // where: {
+      //   createdAt: {
+      //     gte: todayStart,
+      //     lte: todayEnd,
+      //   },
+      // },
       orderBy: {
         createdAt: "asc",
       },

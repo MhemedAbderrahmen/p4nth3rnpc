@@ -47,6 +47,7 @@ export function InitialisationModal() {
       await utils.user.get.invalidate();
     },
   });
+
   const createUser = api.user.create.useMutation({
     async onSuccess({ id }) {
       await generateUserQuest.mutateAsync({ userId: id });
